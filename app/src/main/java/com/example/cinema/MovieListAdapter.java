@@ -67,6 +67,15 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
             case"Vệ Binh Dãy Ngân Hà":
                 holder.movieImage.setImageResource(R.drawable.vebinh1);
                 break;
+            case "Tình Người Duyên Ma 2":
+                holder.movieImage.setImageResource(R.drawable.duyenma1);
+                break;
+            case "Đầu Gấu Đụng Đầu Đất":
+                holder.movieImage.setImageResource(R.drawable.daugau1);
+                break;
+            case "Khắc Tinh Của Quỷ":
+                holder.movieImage.setImageResource(R.drawable.quy1);
+                break;
             default:
                 return;
         }
