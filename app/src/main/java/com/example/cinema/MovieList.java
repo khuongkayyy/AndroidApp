@@ -5,7 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -20,12 +23,22 @@ public class MovieList extends AppCompatActivity {
     DatabaseReference databaseReference;
     MovieListAdapter movieListAdapter;
     ArrayList<Film> filmArrayList;
+    ImageView hotFilm;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.all_movie_show);
 
         recyclerView = findViewById(R.id.movieList);
+        hotFilm = findViewById(R.id.hotFilm);
+        hotFilm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MovieList.this,MovieDetail.class);
+                intent.putExtra("filmName","Lật Mặt 6");
+                startActivity(intent);
+            }
+        });
         databaseReference = FirebaseDatabase.getInstance().getReference("film");
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
