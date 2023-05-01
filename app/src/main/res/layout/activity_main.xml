@@ -1,0 +1,419 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnIndex"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:backgroundTint="@color/white"
+            style="@style/ButtonNoBorder"
+            android:drawableLeft="@drawable/index"
+            />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="6"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            android:textSize="25dp"
+            android:text="KD Cinema" />
+
+        <Button
+            android:id="@+id/btnAccountInfor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            style="@style/ButtonNoBorder"
+            android:backgroundTint="@color/white"
+            android:drawableLeft="@drawable/account"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="#918F8F"
+        android:orientation="horizontal">
+
+    </LinearLayout>
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnBookTicket"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:backgroundTint="#00dd00"
+                android:text="Mua Vé" />
+
+            <Button
+                android:id="@+id/btnFilmList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:backgroundTint="#00dd00"
+                android:text="Phim" />
+
+            <Button
+                android:id="@+id/btnGIft"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_weight="1"
+                android:backgroundTint="#00dd00"
+                android:text="Quà Tặng" />
+
+            <Button
+                android:id="@+id/btnDiscount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_weight="1"
+                android:backgroundTint="#00dd00"
+                android:text="Khuyễn Mãi" />
+
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <ScrollView
+        android:layout_marginTop="15dp"
+        android:scrollbars="none"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/itemcontainer"
+                        android:layout_marginHorizontal="10dp"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/movie1Img"
+                            android:layout_width="150dp"
+                            android:layout_height="150dp"
+                            android:src="@drawable/latmat1"
+                            />
+
+                        <TextView
+                            android:id="@+id/txtFilm1"
+                            android:layout_width="match_parent"
+                            android:layout_height="24dp"
+                            android:text="Lật Mặt 6"
+                            android:textAlignment="center"
+                            android:textSize="15dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/txtFilm1_Time"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="120 Phút | 26/04/2023" />
+
+                        <Button
+                            android:id="@+id/btnBookFilm1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="30dp"
+                            android:backgroundTint="#00dd00"
+                            android:text="Đặt vé" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/itemcontainer"
+                        android:layout_marginHorizontal="10dp"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/movie2Img"
+                            android:layout_width="150dp"
+                            android:layout_height="150dp"
+                            app:srcCompat="@drawable/cnmc1" />
+
+                        <TextView
+                            android:id="@+id/txtFilm2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Con Nhót Mót Chồng"
+                            android:textAlignment="center"
+                            android:textSize="15dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/txtFilm2_Time"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="112 Phút | 21/04/2023" />
+
+                        <Button
+                            android:id="@+id/btnBookFilm2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="30dp"
+                            android:backgroundTint="#00dd00"
+                            android:text="Đặt vé" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/itemcontainer"
+                        android:layout_marginHorizontal="10dp"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/movie3Img"
+                            android:layout_width="150dp"
+                            android:layout_height="150dp"
+                            app:srcCompat="@drawable/vebinh1" />
+
+                        <TextView
+                            android:id="@+id/txtFilm3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Vệ Binh Dãy Ngân Hà"
+                            android:textAlignment="center"
+                            android:textSize="15dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/txtFilm3_Time"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="149 Phút | 30/04/2023" />
+
+                        <Button
+                            android:id="@+id/btnBookFilm3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="30dp"
+                            android:backgroundTint="#00dd00"
+                            android:text="Đặt vé" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/itemcontainer"
+                        android:layout_marginHorizontal="10dp"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/movie4Img"
+                            android:layout_width="150dp"
+                            android:layout_height="150dp"
+                            app:srcCompat="@drawable/meo1" />
+
+                        <TextView
+                            android:id="@+id/txtFilm4"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Mèo Siêu Quậy"
+                            android:textAlignment="center"
+                            android:textSize="15dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/txtFilm4_Time"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="80 Phút | 28/04/2023" />
+
+                        <Button
+                            android:id="@+id/btnBookFilm4"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="30dp"
+                            android:backgroundTint="#00dd00"
+                            android:text="Đặt vé" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/itemcontainer"
+                        android:layout_marginHorizontal="10dp"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/movie5Img"
+                            android:layout_width="150dp"
+                            android:layout_height="150dp"
+                            app:srcCompat="@drawable/ma1" />
+
+                        <TextView
+                            android:id="@+id/txtFilm5"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Trạm Tàu Ma"
+                            android:textAlignment="center"
+                            android:textSize="15dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/txtFilm5_Time"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="80 Phút | 27/04/2023" />
+
+                        <Button
+                            android:id="@+id/btnBookFilm5"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="30dp"
+                            android:backgroundTint="#00dd00"
+                            android:text="Đặt vé" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/itemcontainer"
+                        android:layout_marginHorizontal="10dp"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/movie6Img"
+                            android:layout_width="150dp"
+                            android:layout_height="150dp"
+                            app:srcCompat="@drawable/malai1" />
+
+                        <TextView
+                            android:id="@+id/txtFilm6"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Ma Lai Rút Ruột"
+                            android:textAlignment="center"
+                            android:textSize="15dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/txtFilm6_Time"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="122 Phút | 28/04/2023" />
+
+                        <Button
+                            android:id="@+id/btnBookFilm6"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="30dp"
+                            android:backgroundTint="#00dd00"
+                            android:text="Đặt vé" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/itemcontainer"
+                        android:layout_marginHorizontal="10dp"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/movie7Img"
+                            android:layout_width="150dp"
+                            android:layout_height="150dp"
+                            app:srcCompat="@drawable/mario1" />
+
+                        <TextView
+                            android:id="@+id/txtFilm7"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Anh Em Mario"
+                            android:textAlignment="center"
+                            android:textSize="15dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/txtFilm7_Time"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="85 Phút | 07/04/2023" />
+
+                        <Button
+                            android:id="@+id/btnBookFilm7"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="30dp"
+                            android:backgroundTint="#00dd00"
+                            android:text="Đặt vé" />
+                    </LinearLayout>
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <ImageView
+                android:id="@+id/imageView10"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginVertical="20dp"
+                app:srcCompat="@drawable/gift1" />
+
+            <ImageView
+                android:id="@+id/imageView11"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                app:srcCompat="@drawable/gift3" />
+
+            <ImageView
+                android:layout_marginTop="20dp"
+                android:id="@+id/imageView12"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                app:srcCompat="@drawable/gift2" />
+
+            <TextView
+                android:id="@+id/txtFooter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textStyle="bold"
+                android:textSize="25dp"
+                android:text="KD Cinema" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

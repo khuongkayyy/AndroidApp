@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/button2"
+            style="@style/ButtonNoBorder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:backgroundTint="@color/white"
+            android:drawableLeft="@drawable/index" />
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="6"
+            android:text="QUÀ TẶNG"
+            android:textSize="25dp"
+            android:gravity="center"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/button3"
+            style="@style/ButtonNoBorder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:backgroundTint="@color/white"
+            android:drawableLeft="@drawable/account" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/black"
+        android:orientation="vertical">
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#F1EFEF"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView19"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="10dp"
+                android:text="Bán chạy nhất"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/black"
+                android:orientation="vertical"></LinearLayout>
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginVertical="15dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginVertical="10dp">
+
+                    <LinearLayout
+                        android:layout_width="150dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginHorizontal="15dp"
+                        android:background="@drawable/itemcontainer"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/imageView13"
+                            android:layout_width="match_parent"
+                            android:layout_height="127dp"
+                            app:srcCompat="@drawable/harmonycombo" />
+
+                        <TextView
+                            android:id="@+id/textView12"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/white"
+                            android:text="Harmony Couple Combo" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/black"
+                            android:orientation="vertical" />
+
+                        <TextView
+                            android:id="@+id/textView21"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="#F7C1C9"
+                            android:gravity="right"
+                            android:paddingVertical="5dp"
+                            android:text="135.000 Đ"
+                            android:textSize="15dp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="150dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginHorizontal="15dp"
+                        android:background="@drawable/itemcontainer"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/imageView14"
+                            android:layout_width="match_parent"
+                            android:layout_height="127dp"
+                            app:srcCompat="@drawable/ticket" />
+
+                        <TextView
+                            android:id="@+id/textView13"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/white"
+                            android:gravity="center"
+                            android:paddingBottom="17dp"
+                            android:text="Vé Xem Phim 2D" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/black"
+                            android:orientation="vertical" />
+
+                        <TextView
+                            android:id="@+id/textView22"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="#F7C1C9"
+                            android:gravity="right"
+                            android:paddingVertical="5dp"
+                            android:text="120.000 Đ"
+                            android:textSize="15dp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginHorizontal="15dp"
+                        android:background="@drawable/itemcontainer"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/imageView15"
+                            android:layout_width="match_parent"
+                            android:layout_height="127dp"
+                            app:srcCompat="@drawable/ticket" />
+
+                        <TextView
+                            android:id="@+id/textView14"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/white"
+                            android:gravity="center"
+                            android:paddingBottom="17dp"
+                            android:text="Vé Xem Phim 3D" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/black"
+                            android:orientation="vertical" />
+
+                        <TextView
+                            android:id="@+id/textView23"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:background="#F7C1C9"
+                            android:gravity="right"
+                            android:paddingVertical="5dp"
+                            android:text="180.000 Đ"
+                            android:textSize="15dp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <TextView
+                android:id="@+id/textView24"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="10dp"
+                android:text="Danh mục Hàng Bán"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/black"
+                android:orientation="vertical"></LinearLayout>
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginHorizontal="15dp"
+                        android:background="@drawable/itemcontainer"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/imageView16"
+                            android:layout_width="match_parent"
+                            android:layout_height="127dp"
+                            app:srcCompat="@drawable/ticket" />
+
+                        <TextView
+                            android:id="@+id/textView15"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/white"
+                            android:gravity="center"
+                            android:paddingBottom="17dp"
+                            android:text="Vé Xem Phim 2D" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/black"
+                            android:orientation="vertical" />
+
+                        <TextView
+                            android:id="@+id/textView25"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:background="#F7C1C9"
+                            android:gravity="right"
+                            android:paddingVertical="5dp"
+                            android:text="120.000 Đ"
+                            android:textSize="15dp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginHorizontal="15dp"
+                        android:background="@drawable/itemcontainer"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/imageView17"
+                            android:layout_width="match_parent"
+                            android:layout_height="127dp"
+                            app:srcCompat="@drawable/ticket" />
+
+                        <TextView
+                            android:id="@+id/textView16"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/white"
+                            android:gravity="center"
+                            android:paddingBottom="17dp"
+                            android:text="Vé Xem Phim 2D" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/black"
+                            android:orientation="vertical" />
+
+                        <TextView
+                            android:id="@+id/textView26"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:background="#F7C1C9"
+                            android:gravity="right"
+                            android:paddingVertical="5dp"
+                            android:text="120.000 Đ"
+                            android:textSize="15dp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <TextView
+                android:id="@+id/textView27"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:layout_marginVertical="10dp"
+                android:text="Cinema Food Combo" />
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginHorizontal="15dp"
+                        android:background="@drawable/itemcontainer"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/imageView18"
+                            android:layout_width="match_parent"
+                            android:layout_height="127dp"
+                            app:srcCompat="@drawable/harmonycombo" />
+
+                        <TextView
+                            android:id="@+id/textView17"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/white"
+                            android:text="Harmony Couple Combo" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/black"
+                            android:orientation="vertical" />
+
+                        <TextView
+                            android:id="@+id/textView28"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:background="#F7C1C9"
+                            android:gravity="right"
+                            android:paddingVertical="5dp"
+                            android:text="135.000 Đ"
+                            android:textSize="15dp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="150dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginHorizontal="15dp"
+                        android:background="@drawable/itemcontainer"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/imageView19"
+                            android:layout_width="match_parent"
+                            android:layout_height="127dp"
+                            app:srcCompat="@drawable/harmonyplus" />
+
+                        <TextView
+                            android:id="@+id/textView18"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/white"
+                            android:text="Harmony Plus Couple Combo" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/black"
+                            android:orientation="vertical" />
+
+                        <TextView
+                            android:id="@+id/textView29"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="#F7C1C9"
+                            android:gravity="right"
+                            android:paddingVertical="5dp"
+                            android:text="160.000 Đ"
+                            android:textSize="15dp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                </LinearLayout>
+            </HorizontalScrollView>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
