@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 public class MainActivity extends AppCompatActivity {
     // declaration
     private Button ticketBtn,movieBtn,giftBtn,discountBtn;
@@ -22,14 +24,73 @@ public class MainActivity extends AppCompatActivity {
         initVariable();
         sidebarButtonClicked();
         movieImageClick();
-        film1.setOnClickListener(new View.OnClickListener() {
+//        buttonClick();
+//        film1.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(MainActivity.this,MovieBook.class);
+//                TextView temp = findViewById(R.id.txtFilm1);
+//                String temp1 = temp.getText().toString();
+//                intent.putExtra("filmName",temp1);
+//                startActivity(intent);
+//            }
+//        });
+    }
+    private void buttonClick(){
+        setButtonClickListener(film1,1);
+        setButtonClickListener(film2,2);
+        setButtonClickListener(film3,3);
+        setButtonClickListener(film4,4);
+        setButtonClickListener(film5,5);
+        setButtonClickListener(film6,6);
+        setButtonClickListener(film7,7);
+    }
+    private void setButtonClickListener(Button button, int btnId){
+        TextView tempTv = null;
+//        String tempStr = null;
+        switch (btnId){
+            case 1:
+                tempTv = findViewById(R.id.txtFilm1);
+//                tempStr = tempTv.getText().toString();
+                break;
+            case 2:
+                tempTv = findViewById(R.id.txtFilm2);
+//                tempStr = tempTv.getText().toString();
+                break;
+            case 3:
+                tempTv = findViewById(R.id.txtFilm3);
+//                tempStr = tempTv.getText().toString();
+                break;
+            case 4:
+                tempTv = findViewById(R.id.txtFilm4);
+//                tempStr = tempTv.getText().toString();
+                break;
+            case 5:
+                tempTv = findViewById(R.id.txtFilm5);
+//                tempStr = tempTv.getText().toString();
+                break;
+            case 6:
+                tempTv = findViewById(R.id.txtFilm6);
+//                tempStr = tempTv.getText().toString();
+                break;
+            case 7:
+                tempTv = findViewById(R.id.txtFilm7);
+//                tempStr = tempTv.getText().toString();
+                break;
+            default:
+                return;
+        }
+        TextView finalTempName = tempTv;
+        button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                String filmName = finalTempName.getText().toString();
+                Intent intent = new Intent(MainActivity.this,MovieBook.class);
+                intent.putExtra("filmName", filmName);
+                startActivity(intent);
             }
         });
     }
-
     private void movieImageClick() {
         setMovieImageClickListener(movieImage1,1);
         setMovieImageClickListener(movieImage2,2);
@@ -76,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
                 return;
         }
         TextView finalTempName = tempName;
-        TextView finalTempTime = tempTime;
+//        TextView finalTempTime = tempTime;
         movieImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -113,11 +174,12 @@ public class MainActivity extends AppCompatActivity {
                 openDiscountScreen();
             }
         });
-    }
-
-    private void openDiscountScreen() {
-        Intent intent = new Intent(MainActivity.this,DiscountActivity.class);
-        startActivity(intent);
+        ticketBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openBookTicketScreen();
+            }
+        });
     }
 
     private void initVariable() {
@@ -151,6 +213,16 @@ public class MainActivity extends AppCompatActivity {
 
     private void openFilmListScreen() {
         Intent intent = new Intent(MainActivity.this,MovieList.class);
+        startActivity(intent);
+    }
+
+    private void openBookTicketScreen() {
+        Intent intent = new Intent(MainActivity.this,MovieBook.class);
+        startActivity(intent);
+    }
+
+    private void openDiscountScreen() {
+        Intent intent = new Intent(MainActivity.this,DiscountActivity.class);
         startActivity(intent);
     }
 }

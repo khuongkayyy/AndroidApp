@@ -139,7 +139,7 @@ public class MovieDetail extends AppCompatActivity {
                 moviePic4.setImageResource(R.drawable.malai5);
                 moviePic5.setImageResource(R.drawable.malai6);
                 break;
-            case "Anh Em mario":
+            case "Anh Em Mario":
                 movieImage.setImageResource(R.drawable.mario1);
                 moviePic1.setImageResource(R.drawable.mario2);
                 moviePic2.setImageResource(R.drawable.mario3);

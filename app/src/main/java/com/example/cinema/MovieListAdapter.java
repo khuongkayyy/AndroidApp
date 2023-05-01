@@ -39,7 +39,9 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
         holder.movieImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent intent = new Intent(MovieListAdapter.this,MovieDetail.class);
+                Intent intent = new Intent(context,MovieDetail.class);
+                intent.putExtra("filmName",film.getName());
+                view.getContext().startActivity(intent);
             }
         });
 
