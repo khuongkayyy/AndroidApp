@@ -39,7 +39,6 @@ public class SettingMenu extends AppCompatActivity {
         if (requestCode == LAUNCH_LOGIN_ACTIVITY) {
             if(resultCode == Activity.RESULT_OK){
                 String name = data.getStringExtra("user");
-                userName
                 signIn.setText(name);
             }
             if (resultCode == Activity.RESULT_CANCELED) {
