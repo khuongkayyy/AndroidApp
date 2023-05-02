@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -22,6 +23,10 @@ public class Login extends AppCompatActivity {
     private Button login,registration;
     private EditText phoneNum, password;
     private DatabaseReference databaseReference;
+    SharedPreferences sharedPreferences;
+    private static final String SHARED_PREF_NAME ="userpref";
+    private static final String KEY_ID = "userID";
+    private static final String KEY_NAME = "userName";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,14 +51,15 @@ public class Login extends AppCompatActivity {
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             if (snapshot.hasChild(userMobile)){
                                 final String getPassword = snapshot.child(userMobile).child("password").getValue(String.class);
+                                final String getName = snapshot.child(userMobile).child("fullname").getValue(String.class);
                                 if (getPassword.equals(userPassword)){
                                     Toast.makeText(Login.this,"Đăng nhập thành công",Toast.LENGTH_SHORT).show();
-                                    Intent returnIntent = new Intent();
-                                    returnIntent.putExtra("user",userMobile);
-                                    setResult(Activity.RESULT_OK,returnIntent);
-//                                    Intent intent = new Intent(Login.this,SettingMenu.class);
-//                                    intent.putExtra("user",userMobile);
-//                                    startActivity(intent);
+                                    Intent intent = new Intent(Login.this,SettingMenu.class);
+                                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                                    editor.putString(KEY_ID,userMobile);
+                                    editor.putString(KEY_NAME,getName);
+                                    editor.apply();
+                                    startActivity(intent);
                                     finish();
                                 }else {
                                     Toast.makeText(Login.this,"Mật khẩu nhập vào không chính xác!",Toast.LENGTH_SHORT).show();
@@ -93,5 +99,8 @@ public class Login extends AppCompatActivity {
 
         //db connection
         databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://cinema-34e7b-default-rtdb.firebaseio.com/");
+
+        //share references
+        sharedPreferences = getSharedPreferences(SHARED_PREF_NAME,MODE_PRIVATE);
     }
 }

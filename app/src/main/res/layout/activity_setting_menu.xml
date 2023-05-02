@@ -33,18 +33,18 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/button4"
+                android:id="@+id/btnLogOut"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:layout_weight="5"
-                android:text="Button" />
+                android:text="Đăng xuất" />
 
             <Button
                 android:id="@+id/btnSetting_Home"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:layout_weight="5"
-                android:text="Button" />
+                android:text="Home" />
         </LinearLayout>
 
     </LinearLayout>

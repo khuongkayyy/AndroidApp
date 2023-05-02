@@ -5,21 +5,57 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Display;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class SettingMenu extends AppCompatActivity {
-    private Button signIn,home;
+    private Button signIn,signOut,home;
+    SharedPreferences sharedPreferences;
+    private static final String SHARED_PREF_NAME ="userpref";
+    private static final String KEY_ID = "userID";
+    private static final String KEY_NAME = "userName";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        String userName;
         setContentView(R.layout.activity_setting_menu);
         initVariable();
         signIn();
         homeRedirect();
+        autoUpdate();
+        signOut();
+    }
+
+    private void signOut() {
+        signOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.clear();
+                editor.commit();
+                Toast.makeText(SettingMenu.this,"Đăng xuất thành công",Toast.LENGTH_SHORT).show();
+                finish();
+            }
+        });
+    }
+
+    private void autoUpdate() {
+        String userID = sharedPreferences.getString(KEY_ID,null);
+        String userName = sharedPreferences.getString(KEY_NAME,null);
+        if (userName != null){
+            signIn.setText("Xin chào: "+userName);
+        }else {
+            signIn.setText("Xin chào, nhấn vào đây để đăng nhập!");
+        }
+        if (!signIn.getText().toString().equals("Xin chào, nhấn vào đây để đăng nhập!")){
+            signIn.setEnabled(false);
+        }else {
+            signOut.setVisibility(View.GONE);
+        }
     }
 
     private void homeRedirect() {
@@ -32,34 +68,22 @@ public class SettingMenu extends AppCompatActivity {
         });
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        int LAUNCH_LOGIN_ACTIVITY = 1;
-        if (requestCode == LAUNCH_LOGIN_ACTIVITY) {
-            if(resultCode == Activity.RESULT_OK){
-                String name = data.getStringExtra("user");
-                signIn.setText(name);
-            }
-            if (resultCode == Activity.RESULT_CANCELED) {
-                // Write your code if there's no result
-            }
-        }
-    }
-
     private void signIn() {
         signIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int LAUNCH_LOGIN_ACTIVITY = 1;
                 Intent intent = new Intent(SettingMenu.this,Login.class);
-                startActivityForResult(intent,LAUNCH_LOGIN_ACTIVITY);
+                startActivity(intent);
             }
         });
     }
 
     private void initVariable() {
+        //button
         signIn = findViewById(R.id.btnUserName);
+        signOut = findViewById(R.id.btnLogOut);
         home = findViewById(R.id.btnSetting_Home);
+        //shared references
+        sharedPreferences = getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
     }
 }
