@@ -45,48 +45,55 @@ public class MainActivity extends AppCompatActivity {
         setButtonClickListener(film6,6);
         setButtonClickListener(film7,7);
     }
-    private void setButtonClickListener(Button button, int btnId){
-        TextView tempTv = null;
-//        String tempStr = null;
-        switch (btnId){
+    private void setButtonClickListener(Button button, int movieId) {
+        TextView tempName = null;
+//        TextView tempTime  = null;
+        switch (movieId){
             case 1:
-                tempTv = findViewById(R.id.txtFilm1);
-//                tempStr = tempTv.getText().toString();
+                tempName = findViewById(R.id.txtFilm1);
+//                tempTime = findViewById(R.id.txtFilm1_Time);
                 break;
             case 2:
-                tempTv = findViewById(R.id.txtFilm2);
-//                tempStr = tempTv.getText().toString();
+                tempName = findViewById(R.id.txtFilm2);
+//                tempTime = findViewById(R.id.txtFilm2_Time);
                 break;
             case 3:
-                tempTv = findViewById(R.id.txtFilm3);
-//                tempStr = tempTv.getText().toString();
+                tempName = findViewById(R.id.txtFilm3);
+//                tempTime = findViewById(R.id.txtFilm3_Time);
                 break;
             case 4:
-                tempTv = findViewById(R.id.txtFilm4);
-//                tempStr = tempTv.getText().toString();
+                tempName = findViewById(R.id.txtFilm4);
+//                tempTime = findViewById(R.id.txtFilm4_Time);
                 break;
             case 5:
-                tempTv = findViewById(R.id.txtFilm5);
-//                tempStr = tempTv.getText().toString();
+                tempName = findViewById(R.id.txtFilm5);
+//                tempTime = findViewById(R.id.txtFilm5_Time);
                 break;
             case 6:
-                tempTv = findViewById(R.id.txtFilm6);
-//                tempStr = tempTv.getText().toString();
+                tempName = findViewById(R.id.txtFilm6);
+//                tempTime = findViewById(R.id.txtFilm6_Time);
                 break;
             case 7:
-                tempTv = findViewById(R.id.txtFilm7);
-//                tempStr = tempTv.getText().toString();
+                tempName = findViewById(R.id.txtFilm7);
+//                tempTime = findViewById(R.id.txtFilm7_Time);
                 break;
             default:
                 return;
         }
-        TextView finalTempName = tempTv;
+        TextView finalTempName = tempName;
+//        TextView finalTempTime = tempTime;
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String filmName = finalTempName.getText().toString();
-                Intent intent = new Intent(MainActivity.this,MovieBook.class);
+//                String filmTime = finalTempTime.getText().toString();
+//                int dividerIndex = filmTime.indexOf(" | ");
+//                String durationString = filmTime.substring(0, dividerIndex).toLowerCase();
+//                String dateString = filmTime.substring(dividerIndex + 3);
+                Intent intent = new Intent(MainActivity.this, MovieBook.class);
                 intent.putExtra("filmName", filmName);
+//                intent.putExtra("filmDate", dateString);
+//                intent.putExtra("filmDuration", durationString);
                 startActivity(intent);
             }
         });
@@ -103,35 +110,35 @@ public class MainActivity extends AppCompatActivity {
 
     private void setMovieImageClickListener(ImageView movieImage, int movieId) {
         TextView tempName = null;
-        TextView tempTime  = null;
+//        TextView tempTime  = null;
         switch (movieId){
             case 1:
                 tempName = findViewById(R.id.txtFilm1);
-                tempTime = findViewById(R.id.txtFilm1_Time);
+//                tempTime = findViewById(R.id.txtFilm1_Time);
                 break;
             case 2:
                 tempName = findViewById(R.id.txtFilm2);
-                tempTime = findViewById(R.id.txtFilm2_Time);
+//                tempTime = findViewById(R.id.txtFilm2_Time);
                 break;
             case 3:
                 tempName = findViewById(R.id.txtFilm3);
-                tempTime = findViewById(R.id.txtFilm3_Time);
+//                tempTime = findViewById(R.id.txtFilm3_Time);
                 break;
             case 4:
                 tempName = findViewById(R.id.txtFilm4);
-                tempTime = findViewById(R.id.txtFilm4_Time);
+//                tempTime = findViewById(R.id.txtFilm4_Time);
                 break;
             case 5:
                 tempName = findViewById(R.id.txtFilm5);
-                tempTime = findViewById(R.id.txtFilm5_Time);
+//                tempTime = findViewById(R.id.txtFilm5_Time);
                 break;
             case 6:
                 tempName = findViewById(R.id.txtFilm6);
-                tempTime = findViewById(R.id.txtFilm6_Time);
+//                tempTime = findViewById(R.id.txtFilm6_Time);
                 break;
             case 7:
                 tempName = findViewById(R.id.txtFilm7);
-                tempTime = findViewById(R.id.txtFilm7_Time);
+//                tempTime = findViewById(R.id.txtFilm7_Time);
                 break;
             default:
                 return;

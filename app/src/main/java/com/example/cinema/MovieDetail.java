@@ -35,7 +35,20 @@ public class MovieDetail extends AppCompatActivity {
         initVariable();
         updateData();
         homeRedirect();
+        bookTicket();
     }
+
+    private void bookTicket() {
+        bookTicket.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MovieDetail.this,MovieBook.class);
+                intent.putExtra("filmName",filmName.getText().toString());
+                startActivity(intent);
+            }
+        });
+    }
+
     private void homeRedirect() {
         home.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,6 +60,7 @@ public class MovieDetail extends AppCompatActivity {
     }
 
     private void initVariable() {
+        //textview
         filmName = findViewById(R.id.txtName_one);
         filmDate = findViewById(R.id.txtDate_one);
         filmTime = findViewById(R.id.txtTime_one);
@@ -54,7 +68,12 @@ public class MovieDetail extends AppCompatActivity {
         filmDirector = findViewById(R.id.txtDirector);
         filmComment = findViewById(R.id.txtReview);
         filmBrief = findViewById(R.id.txtFilmBrief);
+
+        //button
         home = findViewById(R.id.btnDetail_Home);
+        bookTicket = findViewById(R.id.btnSubmit);
+
+        //image
         movieImage = findViewById(R.id.movieImg_one);
         moviePic1 = findViewById(R.id.picNum1);
         moviePic2 = findViewById(R.id.picNum2);
