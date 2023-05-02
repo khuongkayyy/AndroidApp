@@ -25,23 +25,23 @@
         android:textStyle="bold" />
 
     <EditText
-        android:textColor="@color/white"
-        android:id="@+id/txtUserName"
+        android:id="@+id/edtPhoneNum"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginVertical="30dp"
         android:ems="10"
+        android:hint="Phone Number"
         android:inputType="textPersonName"
-        android:text="UserName" />
+        android:textColor="@color/white" />
 
     <EditText
         android:textColor="@color/white"
-        android:id="@+id/txtPassword"
+        android:id="@+id/edtPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Password" />
+        android:inputType="textPassword"
+        android:hint="Password" />
 
     <Button
         android:id="@+id/btnLogin"

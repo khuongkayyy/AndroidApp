@@ -13,6 +13,7 @@ import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity {
     // declaration
+    private Button account;
     private Button ticketBtn,movieBtn,giftBtn,discountBtn;
     private  Button film1,film2,film3,film4,film5,film6,film7;
 
@@ -24,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
         initVariable();
         sidebarButtonClicked();
         movieImageClick();
+        accountSetting();
 //        buttonClick();
 //        film1.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -36,6 +38,17 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //        });
     }
+
+    private void accountSetting() {
+        account.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this,SettingMenu.class);
+                startActivity(intent);
+            }
+        });
+    }
+
     private void buttonClick(){
         setButtonClickListener(film1,1);
         setButtonClickListener(film2,2);
@@ -190,6 +203,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initVariable() {
+        //menu button:
+        account = findViewById(R.id.btnAccountInfor);
         //sidebar button
         ticketBtn = findViewById(R.id.btnBookTicket);
         movieBtn = findViewById(R.id.btnFilmList);
