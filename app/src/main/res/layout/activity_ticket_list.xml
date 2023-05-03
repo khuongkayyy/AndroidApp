@@ -1,23 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="#00dd00"
-    android:orientation="vertical">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".TicketList">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
+            android:layout_height="match_parent"
             android:gravity="center"
-            android:text="Danh Sách Phim"
+            android:text="Danh Sách Vé"
+            android:background="#00dd00"
             android:textColor="@color/white"
             android:textSize="25dp"
             android:textStyle="bold" />
@@ -26,7 +27,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="50dp"
         android:background="@color/white"
         android:backgroundTint="#f5f5f5"
         android:orientation="vertical">
@@ -44,7 +44,7 @@
                 android:layout_marginRight="10dp"
                 android:layout_weight="5"
                 android:backgroundTint="#00dd00"
-                android:text="Đang chiếu" />
+                android:text="Vé Đã Đặt" />
 
             <Button
                 android:id="@+id/aboutToShow"
@@ -54,21 +54,17 @@
                 android:layout_marginRight="10dp"
                 android:layout_weight="5"
                 android:backgroundTint="@color/white"
-                android:text="Sắp chiếu"
+                android:text="Phim Đã Xem"
                 android:textColor="@color/black" />
 
         </LinearLayout>
 
-        <ImageView
-            android:id="@+id/hotFilm"
-            android:layout_width="wrap_content"
-            android:layout_height="258dp"
-            android:layout_weight="5"
-            app:srcCompat="@drawable/latmat2" />
-
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/movieList"
+            android:id="@+id/ticketList"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="match_parent"
+            android:layout_weight="5" />
+
     </LinearLayout>
+
 </LinearLayout>

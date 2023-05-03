@@ -4,22 +4,17 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.nfc.Tag;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
-import java.util.ArrayList;
 
 public class MovieDetail extends AppCompatActivity {
     private Button home;
@@ -71,7 +66,7 @@ public class MovieDetail extends AppCompatActivity {
 
         //button
         home = findViewById(R.id.btnDetail_Home);
-        bookTicket = findViewById(R.id.btnSubmit);
+        bookTicket = findViewById(R.id.btnBook);
 
         //image
         movieImage = findViewById(R.id.movieImg_one);
@@ -165,6 +160,30 @@ public class MovieDetail extends AppCompatActivity {
                 moviePic3.setImageResource(R.drawable.mario4);
                 moviePic4.setImageResource(R.drawable.mario5);
                 moviePic5.setImageResource(R.drawable.mario6);
+                break;
+            case "Khắc Tinh Của Quỷ":
+                movieImage.setImageResource(R.drawable.quy1);
+                moviePic1.setImageResource(R.drawable.quy2);
+                moviePic2.setImageResource(R.drawable.quy3);
+                moviePic3.setImageResource(R.drawable.quy4);
+                moviePic4.setImageResource(R.drawable.quy5);
+                moviePic5.setImageResource(R.drawable.quy6);
+                break;
+            case "Tình Người Duyên Ma 2":
+                movieImage.setImageResource(R.drawable.duyenma1);
+                moviePic1.setImageResource(R.drawable.duyenma2);
+                moviePic2.setImageResource(R.drawable.duyenma3);
+                moviePic3.setImageResource(R.drawable.duyenma4);
+                moviePic4.setImageResource(R.drawable.duyenma5);
+                moviePic5.setImageResource(R.drawable.duyenma6);
+                break;
+            case "Đầu Gấu Đụng Đầu Đất":
+                movieImage.setImageResource(R.drawable.daugau1);
+                moviePic1.setImageResource(R.drawable.daugau2);
+                moviePic2.setImageResource(R.drawable.daugau3);
+                moviePic3.setImageResource(R.drawable.daugau4);
+                moviePic4.setImageResource(R.drawable.daugau5);
+                moviePic5.setImageResource(R.drawable.daugau6);
                 break;
             default:
                 return;

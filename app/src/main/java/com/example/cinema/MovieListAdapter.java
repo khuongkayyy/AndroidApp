@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -44,7 +45,14 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
                 view.getContext().startActivity(intent);
             }
         });
-
+        holder.bookMovie.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context,MovieBook.class);
+                intent.putExtra("filmName",film.getName());
+                view.getContext().startActivity(intent);
+            }
+        });
         //set image:
         String filmName = holder.nameTxt.getText().toString();
         switch (filmName){
@@ -93,6 +101,7 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
         public TextView timeTxt;
         public TextView nameTxt;
         public TextView typeTxt;
+        public Button bookMovie;
         public MovieListHolder(View movieView) {
             super(movieView);
             movieImage = movieView.findViewById(R.id.movieImg_one);
@@ -100,6 +109,7 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
             timeTxt = movieView.findViewById(R.id.txtTime_one);
             nameTxt = movieView.findViewById(R.id.txtName_one);
             typeTxt = movieView.findViewById(R.id.txtType_one);
+            bookMovie = movieView.findViewById(R.id.btnBook);
         }
     }
 }

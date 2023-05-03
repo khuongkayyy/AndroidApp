@@ -131,10 +131,9 @@
 
                         <ImageView
                             android:id="@+id/movie1Img"
-                            android:layout_width="150dp"
-                            android:layout_height="150dp"
-                            android:src="@drawable/latmat1"
-                            />
+                            android:layout_width="250dp"
+                            android:layout_height="250dp"
+                            android:src="@drawable/latmat1" />
 
                         <TextView
                             android:id="@+id/txtFilm1"
@@ -149,6 +148,7 @@
                             android:id="@+id/txtFilm1_Time"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:textAlignment="center"
                             android:text="120 Phút | 26/04/2023" />
 
                         <Button
@@ -170,8 +170,8 @@
 
                         <ImageView
                             android:id="@+id/movie2Img"
-                            android:layout_width="150dp"
-                            android:layout_height="150dp"
+                            android:layout_width="250dp"
+                            android:layout_height="250dp"
                             app:srcCompat="@drawable/cnmc1" />
 
                         <TextView
@@ -187,6 +187,7 @@
                             android:id="@+id/txtFilm2_Time"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:textAlignment="center"
                             android:text="112 Phút | 21/04/2023" />
 
                         <Button
@@ -207,8 +208,8 @@
 
                         <ImageView
                             android:id="@+id/movie3Img"
-                            android:layout_width="150dp"
-                            android:layout_height="150dp"
+                            android:layout_width="250dp"
+                            android:layout_height="250dp"
                             app:srcCompat="@drawable/vebinh1" />
 
                         <TextView
@@ -224,6 +225,7 @@
                             android:id="@+id/txtFilm3_Time"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:textAlignment="center"
                             android:text="149 Phút | 30/04/2023" />
 
                         <Button
@@ -244,8 +246,8 @@
 
                         <ImageView
                             android:id="@+id/movie4Img"
-                            android:layout_width="150dp"
-                            android:layout_height="150dp"
+                            android:layout_width="250dp"
+                            android:layout_height="250dp"
                             app:srcCompat="@drawable/meo1" />
 
                         <TextView
@@ -261,6 +263,7 @@
                             android:id="@+id/txtFilm4_Time"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:textAlignment="center"
                             android:text="80 Phút | 28/04/2023" />
 
                         <Button
@@ -281,8 +284,8 @@
 
                         <ImageView
                             android:id="@+id/movie5Img"
-                            android:layout_width="150dp"
-                            android:layout_height="150dp"
+                            android:layout_width="250dp"
+                            android:layout_height="250dp"
                             app:srcCompat="@drawable/ma1" />
 
                         <TextView
@@ -298,6 +301,7 @@
                             android:id="@+id/txtFilm5_Time"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:textAlignment="center"
                             android:text="80 Phút | 27/04/2023" />
 
                         <Button
@@ -318,8 +322,8 @@
 
                         <ImageView
                             android:id="@+id/movie6Img"
-                            android:layout_width="150dp"
-                            android:layout_height="150dp"
+                            android:layout_width="250dp"
+                            android:layout_height="250dp"
                             app:srcCompat="@drawable/malai1" />
 
                         <TextView
@@ -335,6 +339,7 @@
                             android:id="@+id/txtFilm6_Time"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:textAlignment="center"
                             android:text="122 Phút | 28/04/2023" />
 
                         <Button
@@ -355,8 +360,8 @@
 
                         <ImageView
                             android:id="@+id/movie7Img"
-                            android:layout_width="150dp"
-                            android:layout_height="150dp"
+                            android:layout_width="250dp"
+                            android:layout_height="250dp"
                             app:srcCompat="@drawable/mario1" />
 
                         <TextView
@@ -372,6 +377,7 @@
                             android:id="@+id/txtFilm7_Time"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:textAlignment="center"
                             android:text="85 Phút | 07/04/2023" />
 
                         <Button
@@ -413,6 +419,36 @@
                 android:textStyle="bold"
                 android:textSize="25dp"
                 android:text="KD Cinema" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView30"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Báo cáo cuối kỳ ứng dụng di động |" />
+
+                <TextView
+                    android:id="@+id/textView31"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Ứng dụng đặt vé xem phim |" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textView32"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="Hướng dẫn sử dụng hệ thống"
+                android:textAlignment="center" />
+
         </LinearLayout>
     </ScrollView>
 
