@@ -6,6 +6,17 @@ public class Ticket {
     private String film;
     private String price;
     private String time;
+    private String user;
+    private String tickettype;
+    private String id;
+
+    public String getId() {
+        return id;
+    }
+
+    public String getTickettype() {
+        return tickettype;
+    }
 
     public String getBookdate() {
         return bookdate;
@@ -30,7 +41,5 @@ public class Ticket {
     public String getUser() {
         return user;
     }
-
-    private String user;
 
 }

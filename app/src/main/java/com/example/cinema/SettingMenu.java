@@ -13,7 +13,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 public class SettingMenu extends AppCompatActivity {
-    private Button signIn,signOut,home;
+    private Button signIn,signOut,home,ticketHistory;
     SharedPreferences sharedPreferences;
     private static final String SHARED_PREF_NAME ="userpref";
     private static final String KEY_ID = "userID";
@@ -24,10 +24,21 @@ public class SettingMenu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting_menu);
         initVariable();
-        signIn();
-        homeRedirect();
         autoUpdate();
+        signIn();
         signOut();
+        homeRedirect();
+        ticketHistory();
+    }
+
+    private void ticketHistory() {
+        ticketHistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SettingMenu.this,TicketList.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void signOut() {
@@ -83,6 +94,7 @@ public class SettingMenu extends AppCompatActivity {
         signIn = findViewById(R.id.btnUserName);
         signOut = findViewById(R.id.btnLogOut);
         home = findViewById(R.id.btnSetting_Home);
+        ticketHistory = findViewById(R.id.btnMyTicket);
         //shared references
         sharedPreferences = getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
     }

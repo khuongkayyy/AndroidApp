@@ -3,10 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:background="@drawable/round_corner_layout"
+    android:layout_marginVertical="15dp"
     android:layout_height="wrap_content">
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:layout_marginHorizontal="10dp"
+        android:id="@+id/ticketImg"
         android:layout_width="250dp"
         android:layout_height="200dp"
         android:layout_weight="1"
@@ -27,34 +29,37 @@
             android:text="Con nhót mót chồng" />
 
         <TextView
-            android:layout_marginVertical="5dp"
             android:id="@+id/txtTicketCinema"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Phòng chiếu: " />
 
         <TextView
-            android:layout_marginVertical="5dp"
             android:id="@+id/txtTicketDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Ngày xem:" />
 
         <TextView
-            android:layout_marginVertical="5dp"
             android:id="@+id/txtTicketTime"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Thời gian:" />
 
         <TextView
-            android:layout_marginVertical="5dp"
+            android:id="@+id/txtTicketType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Loại vé: " />
+
+        <TextView
             android:id="@+id/txtTicketBuyer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Tên người đặt vé: " />
 
         <Button
+            android:layout_marginVertical="5dp"
             android:id="@+id/btnCancelTicket"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

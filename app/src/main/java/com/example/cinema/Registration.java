@@ -16,6 +16,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class Registration extends AppCompatActivity {
     private Button registration,login;
     private EditText mobile,name,email,password,passwordConfirmed;
@@ -53,11 +56,20 @@ public class Registration extends AppCompatActivity {
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             if (snapshot.hasChild(newUserMobile)){
                                 Toast.makeText(Registration.this,"Số điện thoại trên đã được đăng ký rồi!",Toast.LENGTH_SHORT).show();
-                            }else {
-                                databaseReference.child("users").child(newUserMobile).child("fullname").setValue(newUserName);
-                                databaseReference.child("users").child(newUserMobile).child("email").setValue(newUserEmail);
-                                databaseReference.child("users").child(newUserMobile).child("password").setValue(newUserPass);
-                                Toast.makeText(Registration.this,"Đăng ký tài khoản mới thành công!",Toast.LENGTH_SHORT).show();
+                            } else if (!isValidPhoneNumber(newUserMobile)) {
+                                Toast.makeText(Registration.this,"Số điên thoại không hợp lệ!",Toast.LENGTH_SHORT).show();
+                            } else {
+                                if (!isValidPassword(newUserPass)){
+                                    Toast.makeText(Registration.this,"Mật khẩu phải dài từ 8 ký tự trở lên, có ít nhất một ký tự in hoa, không chứa ký tự đặt biệt!",Toast.LENGTH_SHORT).show();
+                                }else {
+                                    if (isValidEmail(newUserEmail)){
+                                        Toast.makeText(Registration.this,"Địa chỉ email không hợp lệ!",Toast.LENGTH_SHORT).show();
+                                    }
+                                    databaseReference.child("users").child(newUserMobile).child("fullname").setValue(newUserName);
+                                    databaseReference.child("users").child(newUserMobile).child("email").setValue(newUserEmail);
+                                    databaseReference.child("users").child(newUserMobile).child("password").setValue(newUserPass);
+                                    Toast.makeText(Registration.this,"Đăng ký tài khoản mới thành công!",Toast.LENGTH_SHORT).show();
+                                }
                             }
                         }
 
@@ -69,6 +81,21 @@ public class Registration extends AppCompatActivity {
                 }
             }
         });
+    }
+    public static boolean isValidPhoneNumber(String input) {
+        String regexPattern = "^0(91|94|98|97|90|93)\\d{7}$";
+        return input.matches(regexPattern);
+    }
+    public boolean isValidPassword(String password) {
+        // Check if password is at least 8 characters long, has at least 1 uppercase character, and doesn't contain special characters
+        String pattern = "^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)[A-Za-z\\d]{8,}$";
+        return password.matches(pattern);
+    }
+    public static boolean isValidEmail(String email) {
+        String emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$";
+        Pattern pattern = Pattern.compile(emailRegex);
+        Matcher matcher = pattern.matcher(email);
+        return matcher.matches();
     }
 
     private void loginRedirect() {

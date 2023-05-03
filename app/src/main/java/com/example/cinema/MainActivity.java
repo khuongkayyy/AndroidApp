@@ -25,18 +25,8 @@ public class MainActivity extends AppCompatActivity {
         initVariable();
         sidebarButtonClicked();
         movieImageClick();
+        movieButtonClick();
         accountSetting();
-//        buttonClick();
-//        film1.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(MainActivity.this,MovieBook.class);
-//                TextView temp = findViewById(R.id.txtFilm1);
-//                String temp1 = temp.getText().toString();
-//                intent.putExtra("filmName",temp1);
-//                startActivity(intent);
-//            }
-//        });
     }
 
     private void accountSetting() {
@@ -48,69 +38,55 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
-    private void buttonClick(){
-        setButtonClickListener(film1,1);
-        setButtonClickListener(film2,2);
-        setButtonClickListener(film3,3);
-        setButtonClickListener(film4,4);
-        setButtonClickListener(film5,5);
-        setButtonClickListener(film6,6);
-        setButtonClickListener(film7,7);
+    private void movieButtonClick() {
+        setMovieButtonClickListener(film1,1);
+        setMovieButtonClickListener(film2,2);
+        setMovieButtonClickListener(film3,3);
+        setMovieButtonClickListener(film4,4);
+        setMovieButtonClickListener(film5,5);
+        setMovieButtonClickListener(film6,6);
+        setMovieButtonClickListener(film7,7);
     }
-    private void setButtonClickListener(Button button, int movieId) {
+
+    private void setMovieButtonClickListener(Button button, int movieId) {
         TextView tempName = null;
-//        TextView tempTime  = null;
         switch (movieId){
             case 1:
                 tempName = findViewById(R.id.txtFilm1);
-//                tempTime = findViewById(R.id.txtFilm1_Time);
                 break;
             case 2:
                 tempName = findViewById(R.id.txtFilm2);
-//                tempTime = findViewById(R.id.txtFilm2_Time);
                 break;
             case 3:
                 tempName = findViewById(R.id.txtFilm3);
-//                tempTime = findViewById(R.id.txtFilm3_Time);
                 break;
             case 4:
                 tempName = findViewById(R.id.txtFilm4);
-//                tempTime = findViewById(R.id.txtFilm4_Time);
                 break;
             case 5:
                 tempName = findViewById(R.id.txtFilm5);
-//                tempTime = findViewById(R.id.txtFilm5_Time);
                 break;
             case 6:
                 tempName = findViewById(R.id.txtFilm6);
-//                tempTime = findViewById(R.id.txtFilm6_Time);
                 break;
             case 7:
                 tempName = findViewById(R.id.txtFilm7);
-//                tempTime = findViewById(R.id.txtFilm7_Time);
                 break;
             default:
                 return;
         }
         TextView finalTempName = tempName;
-//        TextView finalTempTime = tempTime;
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String filmName = finalTempName.getText().toString();
-//                String filmTime = finalTempTime.getText().toString();
-//                int dividerIndex = filmTime.indexOf(" | ");
-//                String durationString = filmTime.substring(0, dividerIndex).toLowerCase();
-//                String dateString = filmTime.substring(dividerIndex + 3);
                 Intent intent = new Intent(MainActivity.this, MovieBook.class);
                 intent.putExtra("filmName", filmName);
-//                intent.putExtra("filmDate", dateString);
-//                intent.putExtra("filmDuration", durationString);
                 startActivity(intent);
             }
         });
     }
+
     private void movieImageClick() {
         setMovieImageClickListener(movieImage1,1);
         setMovieImageClickListener(movieImage2,2);
@@ -123,53 +99,38 @@ public class MainActivity extends AppCompatActivity {
 
     private void setMovieImageClickListener(ImageView movieImage, int movieId) {
         TextView tempName = null;
-//        TextView tempTime  = null;
         switch (movieId){
             case 1:
                 tempName = findViewById(R.id.txtFilm1);
-//                tempTime = findViewById(R.id.txtFilm1_Time);
                 break;
             case 2:
                 tempName = findViewById(R.id.txtFilm2);
-//                tempTime = findViewById(R.id.txtFilm2_Time);
                 break;
             case 3:
                 tempName = findViewById(R.id.txtFilm3);
-//                tempTime = findViewById(R.id.txtFilm3_Time);
                 break;
             case 4:
                 tempName = findViewById(R.id.txtFilm4);
-//                tempTime = findViewById(R.id.txtFilm4_Time);
                 break;
             case 5:
                 tempName = findViewById(R.id.txtFilm5);
-//                tempTime = findViewById(R.id.txtFilm5_Time);
                 break;
             case 6:
                 tempName = findViewById(R.id.txtFilm6);
-//                tempTime = findViewById(R.id.txtFilm6_Time);
                 break;
             case 7:
                 tempName = findViewById(R.id.txtFilm7);
-//                tempTime = findViewById(R.id.txtFilm7_Time);
                 break;
             default:
                 return;
         }
         TextView finalTempName = tempName;
-//        TextView finalTempTime = tempTime;
         movieImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String filmName = finalTempName.getText().toString();
-//                String filmTime = finalTempTime.getText().toString();
-//                int dividerIndex = filmTime.indexOf(" | ");
-//                String durationString = filmTime.substring(0, dividerIndex).toLowerCase();
-//                String dateString = filmTime.substring(dividerIndex + 3);
                 Intent intent = new Intent(MainActivity.this, MovieDetail.class);
                 intent.putExtra("filmName", filmName);
-//                intent.putExtra("filmDate", dateString);
-//                intent.putExtra("filmDuration", durationString);
                 startActivity(intent);
             }
         });
@@ -218,6 +179,7 @@ public class MainActivity extends AppCompatActivity {
         film5 = findViewById(R.id.btnBookFilm5);
         film6 = findViewById(R.id.btnBookFilm6);
         film6 = findViewById(R.id.btnBookFilm7);
+        film7 = findViewById(R.id.btnBookFilm7);
         //movie image
         movieImage1 = findViewById(R.id.movie1Img);
         movieImage2 = findViewById(R.id.movie2Img);

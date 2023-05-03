@@ -9,6 +9,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -136,7 +138,7 @@ public class MovieBook extends AppCompatActivity {
                 AlertDialog.Builder builder = new AlertDialog.Builder(MovieBook.this);
                 String information = "Tên phim: " + filmName.getText().toString() +"\n" + "Rạp chiếu: "
                         +cinemaName.getText().toString()+"\n"+"Ngày Chiếu: "
-                        + dateChoice.getText().toString()+"\nTên người đặt vé:" + userName;
+                        + dateChoice.getText().toString()+"\nTên người đặt vé: " + userName;
                 if (filmName.getText().toString().isEmpty() || cinemaName.getText().toString().isEmpty() || filmDate.getText().toString().isEmpty()){
                     builder.setTitle("Vui lòng chọn đầy đủ thông tin của vé!");
                     builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -144,7 +146,9 @@ public class MovieBook extends AppCompatActivity {
                         public void onClick(DialogInterface dialog, int which) {
                         }
                     });
-                }else {
+                } else if (userID == null) {
+                    requestToLogin();
+                } else {
                     builder.setTitle("Xác nhận thông tin vé: ");
                     builder.setMessage(information);
                     builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -154,7 +158,6 @@ public class MovieBook extends AppCompatActivity {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                                     String ticketID = String.valueOf(ticketArrayList.size());
-//                                    Toast.makeText(MovieBook.this,ticketID,Toast.LENGTH_SHORT).show();
                                     databaseReference.child(ticketID).child("bookdate").setValue(filmDate.getText().toString());
                                     databaseReference.child(ticketID).child("cinema").setValue(cinemaName.getText().toString());
                                     databaseReference.child(ticketID).child("film").setValue(filmName.getText().toString());
@@ -162,6 +165,8 @@ public class MovieBook extends AppCompatActivity {
                                     databaseReference.child(ticketID).child("tickettype").setValue(finalTicketType);
                                     databaseReference.child(ticketID).child("time").setValue(finalShowTime);
                                     databaseReference.child(ticketID).child("user").setValue(userID);
+                                    databaseReference.child(ticketID).child("id").setValue(ticketID);
+                                    bookSuccessfully();
                                 }
                                 @Override
                                 public void onCancelled(@NonNull DatabaseError error) {
@@ -176,6 +181,45 @@ public class MovieBook extends AppCompatActivity {
                 dialog.show();
             }
         });
+    }
+
+    private void requestToLogin() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(MovieBook.this);
+        builder.setTitle("Bạn phải tiến hành đăng nhập trước khi đặt vé!");
+        builder.setMessage("Đăng nhập ngay?");
+        builder.setPositiveButton("Đăng nhập ngay", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Intent intent = new Intent(MovieBook.this,Login.class);
+                startActivity(intent);
+            }
+        });
+        builder.setNegativeButton("Đăng ký tài khoản", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Intent intent = new Intent(MovieBook.this,Registration.class);
+                startActivity(intent);
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    private void bookSuccessfully(){
+        Toast.makeText(MovieBook.this,"Đặt vé thành công!",Toast.LENGTH_SHORT).show();
+        AlertDialog.Builder builder = new AlertDialog.Builder(MovieBook.this);
+        builder.setTitle("Đã đặt vé thành công, xin cám ơn bạn!");
+        builder.setMessage("Bạn có xem vé đã đặt?");
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Intent intent = new Intent(MovieBook.this,TicketList.class);
+                startActivity(intent);
+            }
+        });
+        builder.setNegativeButton("Cancel", null);
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
     private void dateChoice() {
@@ -285,6 +329,7 @@ public class MovieBook extends AppCompatActivity {
         String name = intent.getStringExtra("filmName");
         filmName.setText(name);
         filmChoice.setText(name);
+        //error here, plank text when no movie is choose
         databaseReference = FirebaseDatabase.getInstance().getReference("film");
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override

@@ -141,7 +141,8 @@
                             android:layout_height="24dp"
                             android:text="Lật Mặt 6"
                             android:textAlignment="center"
-                            android:textSize="15dp"
+                            android:textSize="20dp"
+                            android:contentDescription="Tên của phim thú 1"
                             android:textStyle="bold" />
 
                         <TextView
@@ -176,11 +177,12 @@
 
                         <TextView
                             android:id="@+id/txtFilm2"
+                            android:contentDescription="Tên của phim thú 1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Con Nhót Mót Chồng"
                             android:textAlignment="center"
-                            android:textSize="15dp"
+                            android:textSize="20dp"
                             android:textStyle="bold" />
 
                         <TextView
@@ -218,7 +220,7 @@
                             android:layout_height="wrap_content"
                             android:text="Vệ Binh Dãy Ngân Hà"
                             android:textAlignment="center"
-                            android:textSize="15dp"
+                            android:textSize="20dp"
                             android:textStyle="bold" />
 
                         <TextView
@@ -256,7 +258,7 @@
                             android:layout_height="wrap_content"
                             android:text="Mèo Siêu Quậy"
                             android:textAlignment="center"
-                            android:textSize="15dp"
+                            android:textSize="20dp"
                             android:textStyle="bold" />
 
                         <TextView
@@ -294,7 +296,7 @@
                             android:layout_height="wrap_content"
                             android:text="Trạm Tàu Ma"
                             android:textAlignment="center"
-                            android:textSize="15dp"
+                            android:textSize="20dp"
                             android:textStyle="bold" />
 
                         <TextView
@@ -332,7 +334,7 @@
                             android:layout_height="wrap_content"
                             android:text="Ma Lai Rút Ruột"
                             android:textAlignment="center"
-                            android:textSize="15dp"
+                            android:textSize="20dp"
                             android:textStyle="bold" />
 
                         <TextView
@@ -370,7 +372,7 @@
                             android:layout_height="wrap_content"
                             android:text="Anh Em Mario"
                             android:textAlignment="center"
-                            android:textSize="15dp"
+                            android:textSize="20dp"
                             android:textStyle="bold" />
 
                         <TextView
