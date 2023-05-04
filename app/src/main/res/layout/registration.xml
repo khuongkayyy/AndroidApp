@@ -4,93 +4,117 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#201D28"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#7FD79B"
+    >
 
     <ImageView
         android:id="@+id/movie2Img"
         android:layout_width="match_parent"
         android:layout_height="206dp"
-        app:srcCompat="@drawable/logo" />
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/login" />
 
     <TextView
+        android:layout_gravity="center"
+        android:paddingHorizontal="10dp"
         android:id="@+id/textView4"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginVertical="10dp"
+        android:background="@drawable/regis_tv"
+        android:paddingVertical="10dp"
+        android:text="Tạo tài khoản mới"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="35dp"
-        android:paddingVertical="10dp"
-        android:textStyle="bold"
-        android:text="CREATE NEW ACCOUNT" />
+        android:textStyle="bold" />
 
     <EditText
+        android:drawableLeft="@drawable/regis_phone"
+        android:background="@drawable/regis_edt"
         android:id="@+id/edtNewUserMobile"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:ems="10"
-        android:hint="Mobile"
+        android:hint=" Số điện thoại"
+        android:layout_marginHorizontal="30dp"
         android:inputType="textPersonName"
-        android:textColorHint="@color/white"
-        android:textColor="#FFFFFF"
-        />
+        android:textColor="#ADDF38"
+        android:textColorHint="#ADDF38" />
 
     <EditText
+        android:drawableLeft="@drawable/regis_peson"
+        android:layout_marginHorizontal="30dp"
         android:id="@+id/edtNewUserName"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/regis_edt"
         android:ems="10"
+        android:hint="Tên"
         android:inputType="textPersonName"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white"
-        android:hint="Name" />
+        android:textColor="#ADDF38"
+        android:textColorHint="#ADDF38" />
 
     <EditText
+        android:drawableLeft="@drawable/regis_email"
+        android:background="@drawable/regis_edt"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="10dp"
         android:id="@+id/edtNewUserEmail"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:ems="10"
+        android:hint=" Địa chỉ Email"
         android:inputType="textPersonName"
-        android:textColorHint="@color/white"
-        android:textColor="#FFFFFF"
-        android:hint="Email" />
+        android:textColor="#ADDF38"
+        android:textColorHint="#ADDF38" />
 
     <EditText
+        android:drawableLeft="@drawable/regis_pass"
+        android:background="@drawable/regis_edt"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="10dp"
         android:id="@+id/edtNewUserPassword"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:ems="10"
+        android:hint=" Mật Khẩu"
         android:inputType="textPassword"
-        android:textColorHint="@color/white"
-        android:textColor="#FFFFFF"
         android:password="true"
-        android:hint="Password"
+        android:textColor="#ADDF38"
+        android:textColorHint="#ADDF38"
         tools:ignore="Deprecated" />
 
     <EditText
+        android:drawableLeft="@drawable/regis_pass"
+        android:background="@drawable/regis_edt"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="10dp"
         android:id="@+id/edtNewUserPassCon"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:ems="10"
-        android:hint="Confirm Password"
+        android:hint=" Xác nhận mật khẩu"
         android:inputType="textPassword"
         android:password="true"
-        android:textColor="#FFFFFF"
-        android:textColorHint="@color/white"
+        android:textColor="#ADDF38"
+        android:textColorHint="#ADDF38"
         tools:ignore="Deprecated" />
 
     <Button
         android:id="@+id/btnRegister"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="30dp"
-        android:backgroundTint="#DFA709"
-        android:textColor="#FFFFFF"
         android:layout_marginHorizontal="60dp"
-        android:text="CREATE" />
+        android:layout_marginVertical="30dp"
+        android:backgroundTint="#ADDF38"
+        android:text="TẠO TÀI KHOẢN"
+        android:textColor="#FFFFFF" />
 
     <Button
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="20dp"
         android:id="@+id/btnLoginDirect"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -99,5 +123,5 @@
         android:textColor="@color/white"
         android:textStyle="bold"
         android:textSize="20dp"
-        android:text="Login" />
+        android:text="ĐĂNG NHẬP" />
 </LinearLayout>

@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
+import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -18,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     private  Button film1,film2,film3,film4,film5,film6,film7;
 
     private ImageView movieImage1,movieImage2,movieImage3,movieImage4,movieImage5,movieImage6,movieImage7;
+    private ImageView apploadImg;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +30,16 @@ public class MainActivity extends AppCompatActivity {
         movieImageClick();
         movieButtonClick();
         accountSetting();
+//        new Handler().postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                TranslateAnimation animation = new TranslateAnimation(0.0f, 500.0f, 0.0f, 0.0f);
+//                animation.setDuration(1000);
+//                animation.setFillAfter(true);
+//                apploadImg.startAnimation(animation);
+//                apploadImg.setVisibility(View.GONE);
+//            }
+//        }, 3000);
     }
 
     private void accountSetting() {
@@ -188,6 +201,7 @@ public class MainActivity extends AppCompatActivity {
         movieImage5 = findViewById(R.id.movie5Img);
         movieImage6 = findViewById(R.id.movie6Img);
         movieImage7 = findViewById(R.id.movie7Img);
+        apploadImg = findViewById(R.id.imgLoadApp);
     }
 
     private void openGiftScreen() {
