@@ -13,7 +13,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 public class SettingMenu extends AppCompatActivity {
-    private Button signIn,signOut,home,ticketHistory;
+    private Button signIn,signOut,home,ticketHistory,accountSetting;
     SharedPreferences sharedPreferences;
     private static final String SHARED_PREF_NAME ="userpref";
     private static final String KEY_ID = "userID";
@@ -62,10 +62,17 @@ public class SettingMenu extends AppCompatActivity {
         }else {
             signIn.setText("Xin chào, nhấn vào đây để đăng nhập!");
         }
-        if (!signIn.getText().toString().equals("Xin chào, nhấn vào đây để đăng nhập!")){
+//        if (!signIn.getText().toString().equals("Xin chào, nhấn vào đây để đăng nhập!")){
+//            signIn.setEnabled(false);
+//        }else {
+//            signOut.setVisibility(View.GONE);
+//        }
+        if (userID != null){
             signIn.setEnabled(false);
         }else {
             signOut.setVisibility(View.GONE);
+            ticketHistory.setVisibility(View.GONE);
+            accountSetting.setVisibility(View.GONE);
         }
     }
 
@@ -95,6 +102,7 @@ public class SettingMenu extends AppCompatActivity {
         signOut = findViewById(R.id.btnLogOut);
         home = findViewById(R.id.btnSetting_Home);
         ticketHistory = findViewById(R.id.btnMyTicket);
+        accountSetting = findViewById(R.id.btnAccountSetting);
         //shared references
         sharedPreferences = getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
     }

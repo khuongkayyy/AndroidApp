@@ -30,7 +30,7 @@ public class TicketList extends AppCompatActivity {
     DatabaseReference databaseReference;
     TicketListAdapter ticketListAdapter;
     ArrayList<Ticket> ticketArrayList;
-    Button watchedMovie,bookedTicket;
+    Button watchedMovie,bookedTicket,home;
     TextView label;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +40,17 @@ public class TicketList extends AppCompatActivity {
         ticketHistory();
         watchedMovie();
         bookedTicketClicked();
+        homeRedirect();
+    }
+
+    private void homeRedirect() {
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(TicketList.this,MainActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void bookedTicketClicked() {
@@ -47,7 +58,7 @@ public class TicketList extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 label.setText("Danh sách vé đã đặt");
-                ticketHistory();
+                ticketListAdapter.notifyDataSetChanged();
             }
         });
     }
@@ -98,6 +109,7 @@ public class TicketList extends AppCompatActivity {
         //button
         watchedMovie = findViewById(R.id.btnWatchedMovie);
         bookedTicket = findViewById(R.id.bookedTicket);
+        home = findViewById(R.id.btnTicketHistory_Home);
         //db connection
         databaseReference = FirebaseDatabase.getInstance().getReference("tickets");
         //label:

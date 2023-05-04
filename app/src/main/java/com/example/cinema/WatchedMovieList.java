@@ -24,7 +24,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class WatchedMovieList extends AppCompatActivity {
-    private Button home,bookedTicket;
+    private Button home,bookedTicket,movieList;
     RecyclerView recyclerView;
     DatabaseReference databaseReference;
     WatchedMovieAdapter watchedMovieAdapter;
@@ -40,7 +40,19 @@ public class WatchedMovieList extends AppCompatActivity {
         initVariable();
         homeRedirect();
         watchedMovie();
+        movieListRedirect();
     }
+
+    private void movieListRedirect() {
+        movieList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(WatchedMovieList.this,MovieList.class);
+                startActivity(intent);
+            }
+        });
+    }
+
     private void watchedMovie() {
         String userID = sharedPreferences.getString(KEY_ID,null);
         String userName = sharedPreferences.getString(KEY_NAME,null);
@@ -101,6 +113,7 @@ public class WatchedMovieList extends AppCompatActivity {
         sharedPreferences = getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
         //button
         home = findViewById(R.id.btnWatchedMovie_Home);
+        movieList = findViewById(R.id.btnWatchedMovie_Movie);
         //recycler view
         recyclerView = findViewById(R.id.watchedMovie);
         recyclerView.setHasFixedSize(true);

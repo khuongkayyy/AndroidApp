@@ -123,10 +123,10 @@
                     android:orientation="horizontal">
 
                     <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/itemcontainer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_marginHorizontal="10dp"
+                        android:background="@drawable/itemcontainer"
                         android:orientation="vertical">
 
                         <ImageView
@@ -139,18 +139,18 @@
                             android:id="@+id/txtFilm1"
                             android:layout_width="match_parent"
                             android:layout_height="24dp"
+                            android:contentDescription="Tên của phim thú 1"
                             android:text="Lật Mặt 6"
                             android:textAlignment="center"
                             android:textSize="20dp"
-                            android:contentDescription="Tên của phim thú 1"
                             android:textStyle="bold" />
 
                         <TextView
                             android:id="@+id/txtFilm1_Time"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textAlignment="center"
-                            android:text="120 Phút | 26/04/2023" />
+                            android:text="120 Phút | 26/04/2023"
+                            android:textAlignment="center" />
 
                         <Button
                             android:id="@+id/btnBookFilm1"
