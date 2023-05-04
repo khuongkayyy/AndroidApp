@@ -1,15 +1,21 @@
 package com.example.cinema;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.StyleSpan;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -70,7 +76,7 @@ public class TicketListAdapter extends RecyclerView.Adapter<TicketListAdapter.Ti
         holder.cancelTicket.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                cancelTicketRequest(ticketID);
+                cancelTicketRequest(ticketID, Gravity.CENTER);
             }
         });
         //set ticket image
@@ -111,49 +117,55 @@ public class TicketListAdapter extends RecyclerView.Adapter<TicketListAdapter.Ti
         }
     }
 
-    private void cancelTicketRequest(String ticketId) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+    private void cancelTicketRequest(String ticketId,int gravity) {
+        final Dialog dialog = new Dialog(context);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.cancel_ticket_dialog);
+        dialog.setCancelable(false);
+        Window window = dialog.getWindow();
+        if (window == null){
+            return;
+        }
+        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT,WindowManager.LayoutParams.WRAP_CONTENT);
+        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
-        builder.setTitle("Bạn có muốn hủy vé ?");
-        String text = "Nhập 'Yes' để tiến hành xóa vé";
-        SpannableString spannableString = new SpannableString(text);
-        StyleSpan boldSpan = new StyleSpan(Typeface.BOLD);
-        spannableString.setSpan(boldSpan, 7, 14, Spannable.SPAN_INCLUSIVE_INCLUSIVE);
-        builder.setMessage(text);
+        WindowManager.LayoutParams windowAttribute = window.getAttributes();
+        windowAttribute.gravity = gravity;
+        window.setAttributes(windowAttribute);
 
-        final EditText input = new EditText(context);
-        builder.setView(input);
+        EditText cancelEditText = dialog.findViewById(R.id.edtCancelTicketDialog);
+        Button no = dialog.findViewById(R.id.btnCancelNo);
+        Button yes= dialog.findViewById(R.id.btnCancelYes);
 
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+        no.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
-                // Get the input value and check if it is valid
-                String confirm = input.getText().toString().trim();
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+
+        yes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                                // Get the input value and check if it is valid
+                String confirm = cancelEditText.getText().toString().trim();
                 if (confirm.equalsIgnoreCase("Yes")){
                     databaseReference = FirebaseDatabase.getInstance().getReference("tickets");
                     databaseReference.child("tickets").addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             databaseReference.child(ticketId).setValue(null);
+                            Toast.makeText(context, "Đã hủy vé thành công!", Toast.LENGTH_SHORT).show();
+                            dialog.dismiss();
                         }
                         @Override
                         public void onCancelled(@NonNull DatabaseError error) {
                         }
                     });
-                    Toast.makeText(context, "Đã hủy vé thành công!", Toast.LENGTH_SHORT).show();
                 }
             }
         });
-        // Set the negative button action to cancel the dialog
-        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
-            }
-        });
-
-        // Show the dialog
-        builder.show();
+        dialog.show();
     }
 
     private boolean checkTicketDate(String ticketDate) {

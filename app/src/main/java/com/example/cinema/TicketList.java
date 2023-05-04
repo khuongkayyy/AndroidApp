@@ -58,7 +58,6 @@ public class TicketList extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 label.setText("Danh sách vé đã đặt");
-                ticketListAdapter.notifyDataSetChanged();
             }
         });
     }

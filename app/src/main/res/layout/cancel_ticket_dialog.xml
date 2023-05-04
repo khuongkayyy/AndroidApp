@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/logout_custom"
+    android:layout_gravity="center"
+    android:layout_marginHorizontal="30dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:background="@drawable/logout_custom_top_left_right"
+        android:id="@+id/textView36"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="25dp"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:text="Bạn muốn hủy vé ? " />
+
+    <TextView
+        android:id="@+id/textView37"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16dp"
+        android:textAlignment="center"
+        android:layout_marginVertical="15dp"
+        android:text="Nhập 'Yes' để xác nhận: " />
+
+    <EditText
+        android:id="@+id/edtCancelTicketDialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_marginHorizontal="20dp"
+            android:id="@+id/btnCancelNo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="@color/black"
+            android:backgroundTint="@color/white"
+            android:text="Không" />
+
+        <Button
+            android:layout_marginHorizontal="20dp"
+            android:id="@+id/btnCancelYes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="#00dd00"
+            android:text="Đồng ý" />
+    </LinearLayout>
+
+</LinearLayout>

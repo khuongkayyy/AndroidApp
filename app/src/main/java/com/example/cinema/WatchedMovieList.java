@@ -22,13 +22,14 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashSet;
 
 public class WatchedMovieList extends AppCompatActivity {
-    private Button home,bookedTicket,movieList;
+    private Button home,movieList;
     RecyclerView recyclerView;
     DatabaseReference databaseReference;
     WatchedMovieAdapter watchedMovieAdapter;
-    ArrayList<Ticket> ticketArrayList;
+    ArrayList<Ticket> ticketArrayList,uniqueTickets;
     SharedPreferences sharedPreferences;
     private static final String SHARED_PREF_NAME ="userpref";
     private static final String KEY_ID = "userID";
@@ -56,6 +57,7 @@ public class WatchedMovieList extends AppCompatActivity {
     private void watchedMovie() {
         String userID = sharedPreferences.getString(KEY_ID,null);
         String userName = sharedPreferences.getString(KEY_NAME,null);
+        HashSet<String> uniqueFilms = new HashSet<>();
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -65,6 +67,12 @@ public class WatchedMovieList extends AppCompatActivity {
                         if (ticket.getUser().equals(userID) && !checkTicketDate(ticket.getBookdate())){
                             ticketArrayList.add(ticket);
                         }
+                    }
+                }
+                for (Ticket ticket : ticketArrayList) {
+                    if (!uniqueFilms.contains(ticket.getFilm())) {
+                        uniqueFilms.add(ticket.getFilm());
+                        uniqueTickets.add(ticket);
                     }
                 }
                 watchedMovieAdapter.notifyDataSetChanged();
@@ -120,7 +128,8 @@ public class WatchedMovieList extends AppCompatActivity {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(layoutManager);
         ticketArrayList = new ArrayList<>();
-        watchedMovieAdapter = new WatchedMovieAdapter(this,ticketArrayList);
+        uniqueTickets = new ArrayList<>();
+        watchedMovieAdapter = new WatchedMovieAdapter(this,uniqueTickets);
         recyclerView.setAdapter(watchedMovieAdapter);
         //db connection
         databaseReference = FirebaseDatabase.getInstance().getReference("tickets");
