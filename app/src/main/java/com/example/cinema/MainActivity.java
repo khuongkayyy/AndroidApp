@@ -20,7 +20,6 @@ public class MainActivity extends AppCompatActivity {
     private  Button film1,film2,film3,film4,film5,film6,film7;
 
     private ImageView movieImage1,movieImage2,movieImage3,movieImage4,movieImage5,movieImage6,movieImage7;
-    private ImageView apploadImg;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -201,7 +200,6 @@ public class MainActivity extends AppCompatActivity {
         movieImage5 = findViewById(R.id.movie5Img);
         movieImage6 = findViewById(R.id.movie6Img);
         movieImage7 = findViewById(R.id.movie7Img);
-        apploadImg = findViewById(R.id.imgLoadApp);
     }
 
     private void openGiftScreen() {
