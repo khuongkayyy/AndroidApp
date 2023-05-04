@@ -62,7 +62,7 @@ public class Registration extends AppCompatActivity {
                                 if (!isValidPassword(newUserPass)){
                                     Toast.makeText(Registration.this,"Mật khẩu phải dài từ 8 ký tự trở lên, có ít nhất một ký tự in hoa, không chứa ký tự đặt biệt!",Toast.LENGTH_SHORT).show();
                                 }else {
-                                    if (isValidEmail(newUserEmail)){
+                                    if (!isValidEmail(newUserEmail)){
                                         Toast.makeText(Registration.this,"Địa chỉ email không hợp lệ!",Toast.LENGTH_SHORT).show();
                                     }
                                     databaseReference.child("users").child(newUserMobile).child("fullname").setValue(newUserName);

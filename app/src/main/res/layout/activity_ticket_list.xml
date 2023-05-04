@@ -13,12 +13,12 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/label"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="Danh Sách Vé"
             android:background="#00dd00"
+            android:gravity="center"
+            android:text="Lịch Sử Giao dịch"
             android:textColor="@color/white"
             android:textSize="25dp"
             android:textStyle="bold" />
@@ -47,7 +47,7 @@
                 android:text="Vé Đã Đặt" />
 
             <Button
-                android:id="@+id/aboutToShow"
+                android:id="@+id/btnWatchedMovie"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
