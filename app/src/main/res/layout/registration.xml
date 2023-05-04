@@ -31,7 +31,6 @@
         android:textStyle="bold" />
 
     <EditText
-        android:drawableLeft="@drawable/regis_phone"
         android:background="@drawable/regis_edt"
         android:id="@+id/edtNewUserMobile"
         android:layout_width="match_parent"
