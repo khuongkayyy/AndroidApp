@@ -195,7 +195,7 @@ public class MovieDetail extends AppCompatActivity {
                 moviePic2.setImageResource(R.drawable.yeu3);
                 moviePic3.setImageResource(R.drawable.yeu4);
                 moviePic4.setImageResource(R.drawable.yeu5);
-                moviePic5.setImageResource(R.drawable.yeu2);
+                moviePic5.setImageResource(R.drawable.yeu1);
                 break;
             case "Sisu - Già Gân Báo Thù":
                 movieImage.setImageResource(R.drawable.sisu6);
