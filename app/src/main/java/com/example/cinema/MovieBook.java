@@ -5,13 +5,19 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.Gravity;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.RadioButton;
@@ -55,6 +61,7 @@ public class MovieBook extends AppCompatActivity {
     private String showTimeFormat(String time, String duration) {
         String timeString = time +" "+" "+duration;
 //        String durationString = duration.substring(0, duration.indexOf(" "));
+//        int duration = Integer.parseInt(durationString);
 //        int duration = Integer.parseInt(durationString.substring(0, durationString.indexOf(" ")));
         String[] parts = timeString.split("h");
         int hours = Integer.parseInt(parts[0]);
@@ -64,17 +71,28 @@ public class MovieBook extends AppCompatActivity {
         int newMinutes = totalMinutes % 60;
         String formattedTime = String.format("%02dh%02d", newHours, newMinutes);
         return time+" ~ "+ formattedTime;
+//        String[] parts = start.split("h");
+//        int hours = Integer.parseInt(parts[0]);
+//        int minutes = Integer.parseInt(parts[1]);
+//        int durationMinutes = Integer.parseInt(duration.split(" ")[0]);
+//        minutes += durationMinutes;
+//        if (minutes >= 60) {
+//            hours += 1;
+//            minutes -= 60;
+//        }
+//        String end = hours + "h" + minutes;
+//        return start +"~" +end;
     }
 
     private void showChoice() {
-        singleShowChoice(show1,1);
-        singleShowChoice(show2,2);
-        singleShowChoice(show3,3);
-        singleShowChoice(show4,4);
-        singleShowChoice(show5,5);
-        singleShowChoice(show6,6);
+        singleShowChoice(show1,1,Gravity.CENTER);
+        singleShowChoice(show2,2,Gravity.CENTER);
+        singleShowChoice(show3,3,Gravity.CENTER);
+        singleShowChoice(show4,4,Gravity.CENTER);
+        singleShowChoice(show5,5,Gravity.CENTER);
+        singleShowChoice(show6,6,Gravity.CENTER);
     }
-    private void singleShowChoice(Button button, int showID) {
+    private void singleShowChoice(Button button, int showID,int gravity) {
         //user information:
         String userID = sharedPreferences.getString(KEY_ID,null);
         String userName = sharedPreferences.getString(KEY_NAME,null);
@@ -118,6 +136,7 @@ public class MovieBook extends AppCompatActivity {
         String finalShowTime = showTime;
         String finalTicketPrice = ticketPrice;
         String finalTicketType = ticketType;
+        //count the current number of ticket to get the ticketID
         ArrayList<Ticket> ticketArrayList = new ArrayList<>();
         databaseReference = FirebaseDatabase.getInstance().getReference("tickets");
         databaseReference.addValueEventListener(new ValueEventListener() {
@@ -136,9 +155,6 @@ public class MovieBook extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(MovieBook.this);
-                String information = "Tên phim: " + filmName.getText().toString() +"\n" + "Rạp chiếu: "
-                        +cinemaName.getText().toString()+"\n"+"Ngày Chiếu: "
-                        + dateChoice.getText().toString()+"\nTên người đặt vé: " + userName;
                 if (filmName.getText().toString().isEmpty() || cinemaName.getText().toString().isEmpty() || filmDate.getText().toString().isEmpty()){
                     builder.setTitle("Vui lòng chọn đầy đủ thông tin của vé!");
                     builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -147,13 +163,42 @@ public class MovieBook extends AppCompatActivity {
                         }
                     });
                 } else if (userID == null) {
-                    requestToLogin();
+                    requestToLogin(Gravity.CENTER);
                 } else {
-                    builder.setTitle("Xác nhận thông tin vé: ");
-                    builder.setMessage(information);
-                    builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    final Dialog dialog = new Dialog(MovieBook.this);
+                    dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                    dialog.setContentView(R.layout.ticket_dialog);
+                    dialog.setCancelable(false);
+                    Window window = dialog.getWindow();
+                    if (window == null){
+                        return;
+                    }
+                    window.setLayout(WindowManager.LayoutParams.MATCH_PARENT,WindowManager.LayoutParams.WRAP_CONTENT);
+                    window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+                    WindowManager.LayoutParams windowAttribute = window.getAttributes();
+                    windowAttribute.gravity = gravity;
+                    window.setAttributes(windowAttribute);
+                    TextView dialogCinema = dialog.findViewById(R.id.txtDialogCinema);
+                    TextView dialogDate = dialog.findViewById(R.id.txtDialogDate);
+                    TextView dialogTime = dialog.findViewById(R.id.txtDialogTime);
+                    TextView dialogUser = dialog.findViewById(R.id.txtDialogUser);
+                    Button no = dialog.findViewById(R.id.btnTicketDialogNo);
+                    Button yes = dialog.findViewById(R.id.btnTicketDialogYes);
+
+                    dialogCinema.setText("Rạp chiếu: "+ cinemaName.getText().toString());
+                    dialogDate.setText("Ngày xem: "+filmDate.getText().toString());
+                    dialogTime.setText("Suất chiếu: "+finalShowTime);
+                    dialogUser.setText("Người đặt vé: "+userName);
+                    no.setOnClickListener(new View.OnClickListener() {
                         @Override
-                        public void onClick(DialogInterface dialog, int which) {
+                        public void onClick(View view) {
+                            dialog.dismiss();
+                        }
+                    });
+                    yes.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
                             databaseReference.child("tickets").addValueEventListener(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -166,59 +211,141 @@ public class MovieBook extends AppCompatActivity {
                                     databaseReference.child(ticketID).child("time").setValue(finalShowTime);
                                     databaseReference.child(ticketID).child("user").setValue(userID);
                                     databaseReference.child(ticketID).child("id").setValue(ticketID);
-                                    bookSuccessfully();
+                                    bookSuccessfully(Gravity.CENTER);
                                 }
                                 @Override
                                 public void onCancelled(@NonNull DatabaseError error) {
-
                                 }
                             });
                         }
                     });
-                    builder.setNegativeButton("Cancel", null);
+                    dialog.show();
                 }
-                AlertDialog dialog = builder.create();
-                dialog.show();
+                AlertDialog dialogMain = builder.create();
+                dialogMain.show();
             }
         });
     }
 
-    private void requestToLogin() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(MovieBook.this);
-        builder.setTitle("Bạn phải tiến hành đăng nhập trước khi đặt vé!");
-        builder.setMessage("Đăng nhập ngay?");
-        builder.setPositiveButton("Đăng nhập ngay", new DialogInterface.OnClickListener() {
+    private void openTicketDialog(int gravity, String cinemaName, String ticketDate, String ticketTime, String ticketBuyer) {
+        final Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.ticket_dialog);
+        dialog.setCancelable(false);
+        Window window = dialog.getWindow();
+        if (window == null){
+            return;
+        }
+        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT,WindowManager.LayoutParams.WRAP_CONTENT);
+        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        WindowManager.LayoutParams windowAttribute = window.getAttributes();
+        windowAttribute.gravity = gravity;
+        window.setAttributes(windowAttribute);
+        TextView dialogCinema = dialog.findViewById(R.id.txtDialogCinema);
+        TextView dialogDate = dialog.findViewById(R.id.txtDialogDate);
+        TextView dialogTime = dialog.findViewById(R.id.txtDialogTime);
+        TextView dialogUser = dialog.findViewById(R.id.txtDialogUser);
+        Button no = dialog.findViewById(R.id.btnTicketDialogNo);
+        Button yes = dialog.findViewById(R.id.btnTicketDialogYes);
+
+        //update data to textview:
+        dialogCinema.setText("Rạp chiếu hiện tại là: "+cinemaName);
+        dialogDate.setText("Ngày chiếu: "+ticketDate);
+        dialogTime.setText("Suất chiếu: "+ticketTime);
+        dialogUser.setText("Người đặt vé: "+ticketBuyer);
+        //button event handle:
+        no.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+        yes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+        dialog.show();
+    }
+    private void requestToLogin(int gravity) {
+        final Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.request_dialog);
+        dialog.setCancelable(false);
+        Window window = dialog.getWindow();
+        if (window == null){
+            return;
+        }
+        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT,WindowManager.LayoutParams.WRAP_CONTENT);
+        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        WindowManager.LayoutParams windowAttribute = window.getAttributes();
+        windowAttribute.gravity = gravity;
+        window.setAttributes(windowAttribute);
+
+        //declare:
+        TextView dialogTittle = dialog.findViewById(R.id.dialogTittle);
+        TextView dialogMessage = dialog.findViewById(R.id.txtDialogMessage);
+        Button no = dialog.findViewById(R.id.btnRequestNo);
+        Button yes = dialog.findViewById(R.id.btnRequestYes);
+        //uopdate data:
+        dialogTittle.setText("Không thể thực hiện");
+        dialogMessage.setText("Bạn phải tiến hành đăng nhập để mua vé\n Đăng nhập ngay ?");
+        no.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+        yes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 Intent intent = new Intent(MovieBook.this,Login.class);
                 startActivity(intent);
             }
         });
-        builder.setNegativeButton("Đăng ký tài khoản", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                Intent intent = new Intent(MovieBook.this,Registration.class);
-                startActivity(intent);
-            }
-        });
-        AlertDialog dialog = builder.create();
         dialog.show();
     }
 
-    private void bookSuccessfully(){
-        Toast.makeText(MovieBook.this,"Đặt vé thành công!",Toast.LENGTH_SHORT).show();
-        AlertDialog.Builder builder = new AlertDialog.Builder(MovieBook.this);
-        builder.setTitle("Đã đặt vé thành công, xin cám ơn bạn!");
-        builder.setMessage("Bạn có xem vé đã đặt?");
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+    private void bookSuccessfully(int gravity){
+        final Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.request_dialog);
+        dialog.setCancelable(false);
+        Window window = dialog.getWindow();
+        if (window == null){
+            return;
+        }
+        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT,WindowManager.LayoutParams.WRAP_CONTENT);
+        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        WindowManager.LayoutParams windowAttribute = window.getAttributes();
+        windowAttribute.gravity = gravity;
+        window.setAttributes(windowAttribute);
+
+        //declare:
+        TextView dialogTittle = dialog.findViewById(R.id.dialogTittle);
+        TextView dialogMessage = dialog.findViewById(R.id.txtDialogMessage);
+        Button no = dialog.findViewById(R.id.btnRequestNo);
+        Button yes = dialog.findViewById(R.id.btnRequestYes);
+        //uopdate data:
+        dialogTittle.setText("Đã đạt vé thành công");
+        dialogMessage.setText("Bạn có muốn xem danh sách vé đã đặt!");
+        no.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+        yes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 Intent intent = new Intent(MovieBook.this,TicketList.class);
                 startActivity(intent);
             }
         });
-        builder.setNegativeButton("Cancel", null);
-        AlertDialog dialog = builder.create();
         dialog.show();
     }
 

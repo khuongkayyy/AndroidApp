@@ -15,7 +15,7 @@
         android:layout_height="wrap_content">
 
         <Button
-            android:id="@+id/btnWatchedMovie_Home"
+            android:id="@+id/btnAccount_Home"
             style="@style/ButtonNoBorder"
             android:layout_width="47dp"
             android:layout_height="wrap_content"

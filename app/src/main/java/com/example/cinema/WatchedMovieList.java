@@ -112,7 +112,7 @@ public class WatchedMovieList extends AppCompatActivity {
     private void initVariable() {
         sharedPreferences = getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
         //button
-        home = findViewById(R.id.btnWatchedMovie_Home);
+        home = findViewById(R.id.btnAccount_Home);
         movieList = findViewById(R.id.btnWatchedMovie_Movie);
         //recycler view
         recyclerView = findViewById(R.id.watchedMovie);

@@ -20,6 +20,8 @@
             android:layout_height="wrap_content"
             android:backgroundTint="#00dd00"
             android:textSize="20dp"
+            android:textColorHighlight="#000000"
+            android:shadowColor="@color/white"
             android:text="Xin chào, click vào đây để đăng nhập!" />
 
     </LinearLayout>
@@ -32,22 +34,24 @@
         <Button
             android:id="@+id/btnMyTicket"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="120dp"
             android:layout_marginHorizontal="15dp"
             android:layout_marginVertical="15dp"
             android:layout_weight="5"
+            android:textSize="20dp"
             android:backgroundTint="#3CD25A"
-            android:text="Lịch sử đặt vé" />
+            android:text="Lịch sử giao dịch" />
 
         <Button
             android:id="@+id/btnAccountSetting"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_weight="5"
-            android:layout_marginVertical="15dp"
+            android:layout_height="120dp"
             android:layout_marginHorizontal="15dp"
+            android:layout_marginVertical="15dp"
+            android:layout_weight="5"
+            android:textSize="20dp"
             android:backgroundTint="#3CD25A"
-            android:text="Tài Khoản" />
+            android:text="Thông tin tài khoản" />
     </LinearLayout>
 
     <LinearLayout
@@ -58,24 +62,24 @@
         <Button
             android:id="@+id/btnLogOut"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_weight="5"
-            android:layout_marginVertical="15dp"
+            android:layout_height="120dp"
             android:layout_marginHorizontal="15dp"
+            android:layout_marginVertical="15dp"
+            android:layout_weight="5"
             android:backgroundTint="#3CD25A"
-            android:textSize="20dp"
-            android:text="Đăng xuất" />
+            android:text="Đăng xuất"
+            android:textSize="20dp" />
 
         <Button
             android:id="@+id/btnSetting_Home"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="120dp"
             android:layout_marginHorizontal="15dp"
             android:layout_marginVertical="15dp"
             android:layout_weight="5"
             android:backgroundTint="#3CD25A"
-            android:textSize="20dp"
-            android:text="Trang chủ" />
+            android:text="Trang chủ"
+            android:textSize="20dp" />
 
     </LinearLayout>
 
