@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -23,27 +24,21 @@ public class MovieList extends AppCompatActivity {
     DatabaseReference databaseReference;
     MovieListAdapter movieListAdapter;
     ArrayList<Film> filmArrayList;
-    ImageView hotFilm;
+    Button currentMovie, newMovie;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.all_movie_show);
-
         recyclerView = findViewById(R.id.movieList);
-        hotFilm = findViewById(R.id.hotFilm);
-        hotFilm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MovieList.this,MovieDetail.class);
-                intent.putExtra("filmName","Lật Mặt 6");
-                startActivity(intent);
-            }
-        });
         databaseReference = FirebaseDatabase.getInstance().getReference("film");
+        currentMovie = findViewById(R.id.btnCurrentMovie);
+        newMovie = findViewById(R.id.btnNewMovie);
+        filmArrayList = new ArrayList<>();
+
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        filmArrayList = new ArrayList<>();
+        filmArrayList.clear();
         movieListAdapter = new MovieListAdapter(this,filmArrayList);
         recyclerView.setAdapter(movieListAdapter);
         databaseReference.addValueEventListener(new ValueEventListener() {
@@ -51,7 +46,72 @@ public class MovieList extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot: snapshot.getChildren()){
                     Film film = dataSnapshot.getValue(Film.class);
-                    filmArrayList.add(film);
+                    if (film.getStatus() != null){
+                        if (!film.getStatus().equalsIgnoreCase("new"))
+                        {
+                            filmArrayList.add(film);
+                        }
+                    }
+                }
+                movieListAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
+        currentMovie.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showCurrentMovie();
+            }
+        });
+        newMovie.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showNewMovie();
+            }
+        });
+    }
+
+    private void showNewMovie() {
+        filmArrayList.clear();
+        recyclerView.setAdapter(movieListAdapter);
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot: snapshot.getChildren()){
+                    Film film = dataSnapshot.getValue(Film.class);
+                    if (film.getStatus() != null){
+                        if (film.getStatus().equalsIgnoreCase("new"))
+                        {
+                            filmArrayList.add(film);
+                        }
+                    }
+                }
+                movieListAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
+    }
+
+    private void showCurrentMovie() {
+        filmArrayList.clear();
+        recyclerView.setAdapter(movieListAdapter);
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot: snapshot.getChildren()){
+                    Film film = dataSnapshot.getValue(Film.class);
+                    if (film.getStatus() != null){
+                        if (!film.getStatus().equalsIgnoreCase("new"))
+                        {
+                            filmArrayList.add(film);
+                        }
+                    }
                 }
                 movieListAdapter.notifyDataSetChanged();
             }

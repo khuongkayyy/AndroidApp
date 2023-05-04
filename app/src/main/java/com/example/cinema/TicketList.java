@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.service.autofill.DateTransformation;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -106,8 +105,8 @@ public class TicketList extends AppCompatActivity {
         recyclerView.setAdapter(ticketListAdapter);
 
         //button
-        watchedMovie = findViewById(R.id.btnWatchedMovie);
-        bookedTicket = findViewById(R.id.bookedTicket);
+        watchedMovie = findViewById(R.id.btnNewMovie);
+        bookedTicket = findViewById(R.id.btnCurrentMovie);
         home = findViewById(R.id.btnTicketHistory_Home);
         //db connection
         databaseReference = FirebaseDatabase.getInstance().getReference("tickets");

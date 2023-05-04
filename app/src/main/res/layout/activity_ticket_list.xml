@@ -45,7 +45,7 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/bookedTicket"
+                android:id="@+id/btnCurrentMovie"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -55,7 +55,7 @@
                 android:text="Vé Đã Đặt" />
 
             <Button
-                android:id="@+id/btnWatchedMovie"
+                android:id="@+id/btnNewMovie"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"

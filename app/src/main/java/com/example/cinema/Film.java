@@ -8,6 +8,12 @@ public class Film {
     private String comment;
     private String type;
     private String director;
+    private String status;
+
+    public String getStatus() {
+        return status;
+    }
+
     public String getName() {
         return name;
     }

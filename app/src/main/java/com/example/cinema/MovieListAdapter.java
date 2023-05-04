@@ -53,6 +53,10 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
                 view.getContext().startActivity(intent);
             }
         });
+        if (film.getStatus().equals("new")){
+            holder.bookMovie.setEnabled(false);
+            holder.bookMovie.setText("Phim sắp lên lịch");
+        }
         //set image:
         String filmName = holder.nameTxt.getText().toString();
         switch (filmName){
@@ -85,6 +89,18 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
                 break;
             case "Khắc Tinh Của Quỷ":
                 holder.movieImage.setImageResource(R.drawable.quy1);
+                break;
+            case "Yêu Như Lần Đầu":
+                holder.movieImage.setImageResource(R.drawable.yeu1);
+                break;
+            case "Sisu - Già Gân Báo Thù":
+                holder.movieImage.setImageResource(R.drawable.sisu6);
+                break;
+            case "Fast And Furious X":
+                holder.movieImage.setImageResource(R.drawable.fast6);
+                break;
+            case "Lời Nguyền Hoa Máu":
+                holder.movieImage.setImageResource(R.drawable.hoamau1);
                 break;
             default:
                 return;

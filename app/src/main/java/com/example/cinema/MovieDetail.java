@@ -87,6 +87,10 @@ public class MovieDetail extends AppCompatActivity {
                 for (DataSnapshot dataSnapshot: snapshot.getChildren()){
                     Film film = dataSnapshot.getValue(Film.class);
                     if (film.getName().equals(filmName.getText().toString())){
+                        if (film.getStatus().equalsIgnoreCase("new")){
+                            bookTicket.setEnabled(false);
+                            bookTicket.setText("Phim sắp lên lịch");
+                        }
                         filmDate.setText("Ngày khởi chiếu: "+film.getDate());
                         filmTime.setText("Thời lượng: "+film.getTime());
                         filmType.setText("Thể loại: "+film.getType());
@@ -184,6 +188,38 @@ public class MovieDetail extends AppCompatActivity {
                 moviePic3.setImageResource(R.drawable.daugau4);
                 moviePic4.setImageResource(R.drawable.daugau5);
                 moviePic5.setImageResource(R.drawable.daugau6);
+                break;
+            case "Yêu Như Lần Đầu":
+                movieImage.setImageResource(R.drawable.yeu1);
+                moviePic1.setImageResource(R.drawable.yeu2);
+                moviePic2.setImageResource(R.drawable.yeu3);
+                moviePic3.setImageResource(R.drawable.yeu4);
+                moviePic4.setImageResource(R.drawable.yeu5);
+                moviePic5.setImageResource(R.drawable.yeu1);
+                break;
+            case "Sisu - Già Gân Báo Thù":
+                movieImage.setImageResource(R.drawable.sisu6);
+                moviePic1.setImageResource(R.drawable.sisu2);
+                moviePic2.setImageResource(R.drawable.sisu1);
+                moviePic3.setImageResource(R.drawable.sisu3);
+                moviePic4.setImageResource(R.drawable.sisu2);
+                moviePic5.setImageResource(R.drawable.sisu4);
+                break;
+            case "Fast And Furious X":
+                movieImage.setImageResource(R.drawable.fast6);
+                moviePic1.setImageResource(R.drawable.fast1);
+                moviePic2.setImageResource(R.drawable.fast2);
+                moviePic3.setImageResource(R.drawable.fast3);
+                moviePic4.setImageResource(R.drawable.fast4);
+                moviePic5.setImageResource(R.drawable.fast2);
+                break;
+            case "Lời Nguyền Hoa Máu":
+                movieImage.setImageResource(R.drawable.hoamau1);
+                moviePic1.setImageResource(R.drawable.hoamau1);
+                moviePic2.setImageResource(R.drawable.hoamau1);
+                moviePic3.setImageResource(R.drawable.hoamau1);
+                moviePic4.setImageResource(R.drawable.hoamau1);
+                moviePic5.setImageResource(R.drawable.hoamau1);
                 break;
             default:
                 return;
