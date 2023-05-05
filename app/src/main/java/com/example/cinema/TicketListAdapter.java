@@ -147,20 +147,25 @@ public class TicketListAdapter extends RecyclerView.Adapter<TicketListAdapter.Ti
         yes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                                // Get the input value and check if it is valid
+                // Get the input value and check if it is valid
                 String confirm = cancelEditText.getText().toString().trim();
                 if (confirm.equalsIgnoreCase("Yes")){
                     databaseReference = FirebaseDatabase.getInstance().getReference("tickets");
-                    databaseReference.child("tickets").addValueEventListener(new ValueEventListener() {
+                    databaseReference.child(ticketId).addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             databaseReference.child(ticketId).setValue(null);
                             Toast.makeText(context, "Đã hủy vé thành công!", Toast.LENGTH_SHORT).show();
-                            ticketArrayList.remove(position);
+                            //update the array list when the ticket is remove:
+                            if (ticketArrayList.size() > position){
+                                ticketArrayList.remove(position);
+                            }
+                            ticketArrayList.clear();
                             dialog.dismiss();
                         }
                         @Override
                         public void onCancelled(@NonNull DatabaseError error) {
+                            //do nothing
                         }
                     });
                 }

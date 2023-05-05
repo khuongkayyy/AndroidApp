@@ -40,6 +40,7 @@ public class TicketList extends AppCompatActivity {
         watchedMovie();
         bookedTicketClicked();
         homeRedirect();
+        ticketArrayList.clear();
         ticketListAdapter.notifyDataSetChanged();
     }
 
@@ -73,6 +74,8 @@ public class TicketList extends AppCompatActivity {
     }
 
     private void ticketHistory() {
+        ticketArrayList.clear();
+        ticketListAdapter.notifyDataSetChanged();
         //init variable
         databaseReference = FirebaseDatabase.getInstance().getReference("tickets");
         String userID = sharedPreferences.getString(KEY_ID,null);

@@ -60,28 +60,15 @@ public class MovieBook extends AppCompatActivity {
 
     private String showTimeFormat(String time, String duration) {
         String timeString = time +" "+" "+duration;
-//        String durationString = duration.substring(0, duration.indexOf(" "));
-//        int duration = Integer.parseInt(durationString);
-//        int duration = Integer.parseInt(durationString.substring(0, durationString.indexOf(" ")));
+        int durationNum = Integer.parseInt(duration.substring(0, duration.indexOf(" ")));
         String[] parts = timeString.split("h");
         int hours = Integer.parseInt(parts[0]);
         int minutes = Integer.parseInt(parts[1].substring(0, 2));
-        int totalMinutes = minutes + 120;
+        int totalMinutes = minutes + durationNum;
         int newHours = hours + totalMinutes / 60;
         int newMinutes = totalMinutes % 60;
         String formattedTime = String.format("%02dh%02d", newHours, newMinutes);
         return time+" ~ "+ formattedTime;
-//        String[] parts = start.split("h");
-//        int hours = Integer.parseInt(parts[0]);
-//        int minutes = Integer.parseInt(parts[1]);
-//        int durationMinutes = Integer.parseInt(duration.split(" ")[0]);
-//        minutes += durationMinutes;
-//        if (minutes >= 60) {
-//            hours += 1;
-//            minutes -= 60;
-//        }
-//        String end = hours + "h" + minutes;
-//        return start +"~" +end;
     }
 
     private void showChoice() {
@@ -136,6 +123,7 @@ public class MovieBook extends AppCompatActivity {
         String finalShowTime = showTime;
         String finalTicketPrice = ticketPrice;
         String finalTicketType = ticketType;
+
         //count the current number of ticket to get the ticketID
         ArrayList<Ticket> ticketArrayList = new ArrayList<>();
         databaseReference = FirebaseDatabase.getInstance().getReference("tickets");
@@ -151,6 +139,8 @@ public class MovieBook extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError error) {
             }
         });
+
+        //check the ticket information:
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -188,7 +178,7 @@ public class MovieBook extends AppCompatActivity {
 
                     dialogCinema.setText("Rạp chiếu: "+ cinemaName.getText().toString());
                     dialogDate.setText("Ngày xem: "+filmDate.getText().toString());
-                    dialogTime.setText("Suất chiếu: "+finalShowTime);
+                    dialogTime.setText("Suất chiếu: "+showTimeFormat(finalShowTime,filmTime));
                     dialogUser.setText("Người đặt vé: "+userName);
                     no.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -226,49 +216,6 @@ public class MovieBook extends AppCompatActivity {
                 dialogMain.show();
             }
         });
-    }
-
-    private void openTicketDialog(int gravity, String cinemaName, String ticketDate, String ticketTime, String ticketBuyer) {
-        final Dialog dialog = new Dialog(this);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.ticket_dialog);
-        dialog.setCancelable(false);
-        Window window = dialog.getWindow();
-        if (window == null){
-            return;
-        }
-        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT,WindowManager.LayoutParams.WRAP_CONTENT);
-        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-
-        WindowManager.LayoutParams windowAttribute = window.getAttributes();
-        windowAttribute.gravity = gravity;
-        window.setAttributes(windowAttribute);
-        TextView dialogCinema = dialog.findViewById(R.id.txtDialogCinema);
-        TextView dialogDate = dialog.findViewById(R.id.txtDialogDate);
-        TextView dialogTime = dialog.findViewById(R.id.txtDialogTime);
-        TextView dialogUser = dialog.findViewById(R.id.txtDialogUser);
-        Button no = dialog.findViewById(R.id.btnTicketDialogNo);
-        Button yes = dialog.findViewById(R.id.btnTicketDialogYes);
-
-        //update data to textview:
-        dialogCinema.setText("Rạp chiếu hiện tại là: "+cinemaName);
-        dialogDate.setText("Ngày chiếu: "+ticketDate);
-        dialogTime.setText("Suất chiếu: "+ticketTime);
-        dialogUser.setText("Người đặt vé: "+ticketBuyer);
-        //button event handle:
-        no.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dialog.dismiss();
-            }
-        });
-        yes.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
-        dialog.show();
     }
     private void requestToLogin(int gravity) {
         final Dialog dialog = new Dialog(this);
@@ -489,6 +436,12 @@ public class MovieBook extends AppCompatActivity {
                     if (film.getName().equals(filmName.getText().toString())){
                         filmTime = film.getTime();
 //                        filmName.setText(filmTime);
+                        show1.setText(showTimeFormat(show1.getText().toString(),filmTime));
+                        show2.setText(showTimeFormat(show2.getText().toString(),filmTime));
+                        show3.setText(showTimeFormat(show3.getText().toString(),filmTime));
+                        show4.setText(showTimeFormat(show4.getText().toString(),filmTime));
+                        show5.setText(showTimeFormat(show5.getText().toString(),filmTime));
+                        show6.setText(showTimeFormat(show6.getText().toString(),filmTime));
                     }
                 }
             }
@@ -496,12 +449,5 @@ public class MovieBook extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError error) {
             }
         });
-        show1.setText(showTimeFormat(show1.getText().toString(),filmTime));
-        show2.setText(showTimeFormat(show2.getText().toString(),filmTime));
-        show3.setText(showTimeFormat(show3.getText().toString(),filmTime));
-        show4.setText(showTimeFormat(show4.getText().toString(),filmTime));
-        show5.setText(showTimeFormat(show5.getText().toString(),filmTime));
-        show6.setText(showTimeFormat(show6.getText().toString(),filmTime));
-
     }
 }
