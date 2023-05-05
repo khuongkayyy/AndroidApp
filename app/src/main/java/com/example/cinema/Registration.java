@@ -73,7 +73,6 @@ public class Registration extends AppCompatActivity {
                                 databaseReference.child("users").child(newUserMobile).child("fullname").setValue(newUserName);
                                 databaseReference.child("users").child(newUserMobile).child("email").setValue(newUserEmail);
                                 databaseReference.child("users").child(newUserMobile).child("password").setValue(newUserPass);
-                                Toast.makeText(Registration.this,"Đăng ký tài khoản mới thành công!",Toast.LENGTH_SHORT).show();
                                 databaseReference.child("users").removeEventListener(this);
                                 registrationSuccessfully(Gravity.CENTER,newUserMobile,newUserPass);
                             }
@@ -110,7 +109,7 @@ public class Registration extends AppCompatActivity {
         Button yes = dialog.findViewById(R.id.btnRequestYes);
 
         //update data:
-        dialogTittle.setText("Đã tạo tài khoản mói thành công!");
+        dialogTittle.setText("Đã tạo tài khoản mới thành công!");
         dialogMessage.setText("Đăng nhập ngay?");
         no.setOnClickListener(new View.OnClickListener() {
             @Override

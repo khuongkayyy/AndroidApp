@@ -279,7 +279,7 @@ public class MovieBook extends AppCompatActivity {
         Button no = dialog.findViewById(R.id.btnRequestNo);
         Button yes = dialog.findViewById(R.id.btnRequestYes);
         //uopdate data:
-        dialogTittle.setText("Đã đạt vé thành công");
+        dialogTittle.setText("Đã đặt vé thành công");
         dialogMessage.setText("Bạn có muốn xem danh sách vé đã đặt!");
         no.setOnClickListener(new View.OnClickListener() {
             @Override

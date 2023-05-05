@@ -214,12 +214,12 @@ public class MainActivity extends AppCompatActivity {
 
     private void openFilmListScreen() {
         Intent intent = new Intent(MainActivity.this,MovieList.class);
-        intent.putExtra("filmName","Chọn Tựa Phim");
         startActivity(intent);
     }
 
     private void openBookTicketScreen() {
         Intent intent = new Intent(MainActivity.this,MovieBook.class);
+        intent.putExtra("filmName","Chọn Tựa Phim");
         startActivity(intent);
     }
 
