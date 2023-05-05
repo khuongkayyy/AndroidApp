@@ -100,6 +100,7 @@ public class WatchedMovieList extends AppCompatActivity {
 
         // Compare the date to today
         Calendar today = Calendar.getInstance();
+        today.add(Calendar.DAY_OF_YEAR, -1);
         Calendar movieDate = Calendar.getInstance();
         movieDate.setTime(date);
         if (movieDate.before(today)) {

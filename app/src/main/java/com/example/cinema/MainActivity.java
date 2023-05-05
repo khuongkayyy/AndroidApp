@@ -31,16 +31,6 @@ public class MainActivity extends AppCompatActivity {
         movieButtonClick();
         accountSetting();
         privacy();
-//        new Handler().postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                TranslateAnimation animation = new TranslateAnimation(0.0f, 500.0f, 0.0f, 0.0f);
-//                animation.setDuration(1000);
-//                animation.setFillAfter(true);
-//                apploadImg.startAnimation(animation);
-//                apploadImg.setVisibility(View.GONE);
-//            }
-//        }, 3000);
     }
 
     private void privacy() {
@@ -224,6 +214,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void openFilmListScreen() {
         Intent intent = new Intent(MainActivity.this,MovieList.class);
+        intent.putExtra("filmName","Chọn Tựa Phim");
         startActivity(intent);
     }
 

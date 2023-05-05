@@ -4,11 +4,18 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -67,13 +74,8 @@ public class Registration extends AppCompatActivity {
                                 databaseReference.child("users").child(newUserMobile).child("email").setValue(newUserEmail);
                                 databaseReference.child("users").child(newUserMobile).child("password").setValue(newUserPass);
                                 Toast.makeText(Registration.this,"Đăng ký tài khoản mới thành công!",Toast.LENGTH_SHORT).show();
-                                Intent resultIntent = new Intent();
-                                resultIntent.putExtra("userPhone",newUserMobile);
-                                resultIntent.putExtra("userPass",newUserPass);
-                                setResult(Activity.RESULT_OK,resultIntent);
-                                onStop();
-                                finish();
                                 databaseReference.child("users").removeEventListener(this);
+                                registrationSuccessfully(Gravity.CENTER,newUserMobile,newUserPass);
                             }
                         }
                         @Override
@@ -84,6 +86,51 @@ public class Registration extends AppCompatActivity {
                 }
             }
         });
+    }
+    private void registrationSuccessfully(int gravity,String newUserMobile, String newUserPass){
+        final Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.request_dialog);
+        dialog.setCancelable(false);
+        Window window = dialog.getWindow();
+        if (window == null){
+            return;
+        }
+        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT,WindowManager.LayoutParams.WRAP_CONTENT);
+        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        WindowManager.LayoutParams windowAttribute = window.getAttributes();
+        windowAttribute.gravity = gravity;
+        window.setAttributes(windowAttribute);
+
+        //declare:
+        TextView dialogTittle = dialog.findViewById(R.id.dialogTittle);
+        TextView dialogMessage = dialog.findViewById(R.id.txtDialogMessage);
+        Button no = dialog.findViewById(R.id.btnRequestNo);
+        Button yes = dialog.findViewById(R.id.btnRequestYes);
+
+        //update data:
+        dialogTittle.setText("Đã tạo tài khoản mói thành công!");
+        dialogMessage.setText("Đăng nhập ngay?");
+        no.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+        yes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent resultIntent = new Intent();
+                resultIntent.putExtra("userPhone",newUserMobile);
+                resultIntent.putExtra("userPass",newUserPass);
+                setResult(Activity.RESULT_OK,resultIntent);
+                onStop();
+                finish();
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
     }
 
     @Override
