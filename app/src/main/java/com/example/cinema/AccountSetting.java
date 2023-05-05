@@ -40,27 +40,46 @@ public class AccountSetting extends AppCompatActivity {
 
     private void confirmedUpdateData() {
         String userID = sharedPreferences.getString(KEY_ID,null);
-        String newUserName = name.getText().toString();
-        String newUserPassword = password.getText().toString();
         newInforSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String newUserName = name.getText().toString();
+                String newUserPassword = password.getText().toString();
+                String newUserPassconfirmed = passwordConfirmed.getText().toString();
                 databaseReference.child("users").addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        if (!newUserName.isEmpty() && newUserPassword.isEmpty()){
+                        if (newUserName.isEmpty() || newUserPassword.isEmpty() || newUserPassconfirmed.isEmpty()){
+                            Toast.makeText(AccountSetting.this, "Vui lòng nhập đầy đủ thông tin!", Toast.LENGTH_SHORT).show();
+                        } else if (!isValidPassword(newUserPassword)) {
+                            Toast.makeText(AccountSetting.this, "Mật khẩu phải dài từ 8 ký tự trở lên, có ít nhất một ký tự in hoa, không chứa ký tự đặt biệt!", Toast.LENGTH_SHORT).show();
+                        } else if (!newUserPassword.equals(newUserPassconfirmed)) {
+                            Toast.makeText(AccountSetting.this, "Mật khẩu không trùng lắp!", Toast.LENGTH_SHORT).show();
+                        }else {
                             databaseReference.child(userID).child("fullname").setValue(newUserName);
                             databaseReference.child(userID).child("password").setValue(newUserPassword);
                             Toast.makeText(AccountSetting.this, "Đã cập nhật thông tin tài khoản thành công!", Toast.LENGTH_SHORT).show();
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.clear();
+                            editor.commit();
+                            editor.putString(KEY_ID,userID);
+                            editor.putString(KEY_NAME,newUserName);
+                            accountName.setText("Xin chào, "+newUserName);
+                            name.setText(newUserName);
+                            editor.apply();
                         }
                     }
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
-
                     }
                 });
             }
         });
+    }
+    public boolean isValidPassword(String password) {
+        // Check if password is at least 8 characters long, has at least 1 uppercase character, and doesn't contain special characters
+        String pattern = "^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)[A-Za-z\\d]{8,}$";
+        return password.matches(pattern);
     }
 
     private void homeRedirect() {
@@ -72,23 +91,6 @@ public class AccountSetting extends AppCompatActivity {
             }
         });
     }
-    private void editTextClicked() {
-        password.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                password.setText("");
-                passwordConfirmed.setText("");
-            }
-        });
-        passwordConfirmed.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                password.setText("");
-                passwordConfirmed.setText("");
-            }
-        });
-    }
-
     private void updateData() {
         String userName = sharedPreferences.getString(KEY_NAME,null);
         accountName.setText("Xin chào, "+userName);
@@ -123,6 +125,6 @@ public class AccountSetting extends AppCompatActivity {
 
         //button
         home = findViewById(R.id.btnAccount_Home);
-        newInforSubmit = findViewById(R.id.btnNewInforConfirmed);
+        newInforSubmit = findViewById(R.id.btnNewInforSubmit);
     }
 }

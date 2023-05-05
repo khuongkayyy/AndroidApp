@@ -102,7 +102,7 @@
         android:textColorHint="#C9E990" />
 
     <Button
-        android:id="@+id/btnNewInforConfirmed"
+        android:id="@+id/btnNewInforSubmit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="60dp"
