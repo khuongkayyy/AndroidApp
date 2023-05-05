@@ -40,6 +40,7 @@ public class TicketList extends AppCompatActivity {
         watchedMovie();
         bookedTicketClicked();
         homeRedirect();
+        ticketListAdapter.notifyDataSetChanged();
     }
 
     private void homeRedirect() {
@@ -73,6 +74,7 @@ public class TicketList extends AppCompatActivity {
 
     private void ticketHistory() {
         //init variable
+        databaseReference = FirebaseDatabase.getInstance().getReference("tickets");
         String userID = sharedPreferences.getString(KEY_ID,null);
         String userName = sharedPreferences.getString(KEY_NAME,null);
         databaseReference.addValueEventListener(new ValueEventListener() {

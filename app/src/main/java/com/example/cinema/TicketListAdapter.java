@@ -76,7 +76,7 @@ public class TicketListAdapter extends RecyclerView.Adapter<TicketListAdapter.Ti
         holder.cancelTicket.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                cancelTicketRequest(ticketID, Gravity.CENTER);
+                cancelTicketRequest(ticketID, Gravity.CENTER,position);
             }
         });
         //set ticket image
@@ -117,7 +117,7 @@ public class TicketListAdapter extends RecyclerView.Adapter<TicketListAdapter.Ti
         }
     }
 
-    private void cancelTicketRequest(String ticketId,int gravity) {
+    private void cancelTicketRequest(String ticketId,int gravity,int position) {
         final Dialog dialog = new Dialog(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.cancel_ticket_dialog);
@@ -156,6 +156,7 @@ public class TicketListAdapter extends RecyclerView.Adapter<TicketListAdapter.Ti
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             databaseReference.child(ticketId).setValue(null);
                             Toast.makeText(context, "Đã hủy vé thành công!", Toast.LENGTH_SHORT).show();
+                            ticketArrayList.remove(position);
                             dialog.dismiss();
                         }
                         @Override
