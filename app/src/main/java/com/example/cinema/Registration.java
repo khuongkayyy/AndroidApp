@@ -3,6 +3,7 @@ package com.example.cinema;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -47,32 +48,34 @@ public class Registration extends AppCompatActivity {
 
                 if (newUserMobile.isEmpty() || newUserName.isEmpty() || newUserEmail.isEmpty() || newUserPass.isEmpty() || newUserPassCon.isEmpty()){
                     Toast.makeText(Registration.this,"Vui lòng nhập đầy đủ thông tin!",Toast.LENGTH_SHORT).show();
-                } else if (!newUserPass.equals(newUserPassCon)) {
-                    Toast.makeText(Registration.this,"Mật khẩu không trùng lắp",Toast.LENGTH_SHORT).show();
+                }else if (!isValidPhoneNumber(newUserMobile)){
+                    Toast.makeText(Registration.this,"Số điện thoại không hợp lệ",Toast.LENGTH_SHORT).show();
+                } else if (!isValidEmail(newUserEmail)) {
+                    Toast.makeText(Registration.this,"Địa chỉ email không hợp lệ",Toast.LENGTH_SHORT).show();
+                } else if (!isValidPassword(newUserPass)) {
+                    Toast.makeText(Registration.this,"Mật khẩu phải dài từ 8 ký tự trở lên, có ít nhất một ký tự in hoa, không chứa ký tự đặt biệt!",Toast.LENGTH_SHORT).show();
                 }else {
-
                     databaseReference.child("users").addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             if (snapshot.hasChild(newUserMobile)){
                                 Toast.makeText(Registration.this,"Số điện thoại trên đã được đăng ký rồi!",Toast.LENGTH_SHORT).show();
-                            } else if (!isValidPhoneNumber(newUserMobile)) {
-                                Toast.makeText(Registration.this,"Số điên thoại không hợp lệ!",Toast.LENGTH_SHORT).show();
-                            } else {
-                                if (!isValidPassword(newUserPass)){
-                                    Toast.makeText(Registration.this,"Mật khẩu phải dài từ 8 ký tự trở lên, có ít nhất một ký tự in hoa, không chứa ký tự đặt biệt!",Toast.LENGTH_SHORT).show();
-                                }else {
-                                    if (!isValidEmail(newUserEmail)){
-                                        Toast.makeText(Registration.this,"Địa chỉ email không hợp lệ!",Toast.LENGTH_SHORT).show();
-                                    }
-                                    databaseReference.child("users").child(newUserMobile).child("fullname").setValue(newUserName);
-                                    databaseReference.child("users").child(newUserMobile).child("email").setValue(newUserEmail);
-                                    databaseReference.child("users").child(newUserMobile).child("password").setValue(newUserPass);
-                                    Toast.makeText(Registration.this,"Đăng ký tài khoản mới thành công!",Toast.LENGTH_SHORT).show();
-                                }
+                            } else if (!newUserPass.equals(newUserPassCon)) {
+                                Toast.makeText(Registration.this,"Mật khẩu không trùng lắp",Toast.LENGTH_SHORT).show();
+                            }else {
+                                databaseReference.child("users").child(newUserMobile).child("fullname").setValue(newUserName);
+                                databaseReference.child("users").child(newUserMobile).child("email").setValue(newUserEmail);
+                                databaseReference.child("users").child(newUserMobile).child("password").setValue(newUserPass);
+                                Toast.makeText(Registration.this,"Đăng ký tài khoản mới thành công!",Toast.LENGTH_SHORT).show();
+                                Intent resultIntent = new Intent();
+                                resultIntent.putExtra("userPhone",newUserMobile);
+                                resultIntent.putExtra("userPass",newUserPass);
+                                setResult(Activity.RESULT_OK,resultIntent);
+                                onStop();
+                                finish();
+                                databaseReference.child("users").removeEventListener(this);
                             }
                         }
-
                         @Override
                         public void onCancelled(@NonNull DatabaseError error) {
 
@@ -82,6 +85,12 @@ public class Registration extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+    }
+
     public static boolean isValidPhoneNumber(String input) {
         String regexPattern = "^0(91|94|98|97|90|93)\\d{7}$";
         return input.matches(regexPattern);

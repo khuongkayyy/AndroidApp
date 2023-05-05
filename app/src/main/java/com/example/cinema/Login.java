@@ -1,12 +1,14 @@
 package com.example.cinema;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,6 +22,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.internal.InternalTokenProvider;
 
 public class Login extends AppCompatActivity {
+    private static final int REQUEST_CODE = 1;
     private Button login,registration;
     private EditText phoneNum, password;
     private DatabaseReference databaseReference;
@@ -83,10 +86,23 @@ public class Login extends AppCompatActivity {
         registration.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+//                Intent intent = new Intent(Login.this,Registration.class);
+//                startActivity(intent);
                 Intent intent = new Intent(Login.this,Registration.class);
-                startActivity(intent);
+                startActivityForResult(intent,REQUEST_CODE);
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+            String userPhone = data.getStringExtra("userPhone");
+            String userPass = data.getStringExtra("userPass");
+            phoneNum.setText(userPhone);
+            password.setText(userPass);
+        }
     }
 
     private void initVariable() {
