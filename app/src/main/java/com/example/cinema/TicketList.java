@@ -81,7 +81,7 @@ public class TicketList extends AppCompatActivity {
                 for (DataSnapshot dataSnapshot: snapshot.getChildren()){
                     Ticket ticket = dataSnapshot.getValue(Ticket.class);
                     if (userID != null){
-                        if (ticket.getUser().equals(userID)){
+                        if (ticket.getUser()!= null && ticket.getUser().equals(userID)){
                             ticketArrayList.add(ticket);
                         }
                     }
