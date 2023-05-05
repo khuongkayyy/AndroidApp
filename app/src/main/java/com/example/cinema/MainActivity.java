@@ -16,6 +16,7 @@ import org.w3c.dom.Text;
 public class MainActivity extends AppCompatActivity {
     // declaration
     private Button account;
+    private TextView txtPrivacy;
     private Button ticketBtn,movieBtn,giftBtn,discountBtn;
     private  Button film1,film2,film3,film4,film5,film6,film7;
 
@@ -29,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
         movieImageClick();
         movieButtonClick();
         accountSetting();
+        privacy();
 //        new Handler().postDelayed(new Runnable() {
 //            @Override
 //            public void run() {
@@ -39,6 +41,16 @@ public class MainActivity extends AppCompatActivity {
 //                apploadImg.setVisibility(View.GONE);
 //            }
 //        }, 3000);
+    }
+
+    private void privacy() {
+        txtPrivacy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this,Privacy.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void accountSetting() {
@@ -200,6 +212,9 @@ public class MainActivity extends AppCompatActivity {
         movieImage5 = findViewById(R.id.movie5Img);
         movieImage6 = findViewById(R.id.movie6Img);
         movieImage7 = findViewById(R.id.movie7Img);
+
+        //textview
+        txtPrivacy = findViewById(R.id.txtPrivacy);
     }
 
     private void openGiftScreen() {

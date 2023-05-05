@@ -13,7 +13,7 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/btnIndex"
+            android:id="@+id/btnPrivacy_Home"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="2"
@@ -23,7 +23,7 @@
             />
 
         <TextView
-            android:id="@+id/textView6"
+            android:id="@+id/txtPrivacyLabel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="6"
@@ -454,7 +454,7 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/textView32"
+                android:id="@+id/txtPrivacy"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"

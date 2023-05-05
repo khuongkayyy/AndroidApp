@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Privacy">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnPrivacy_Home"
+            style="@style/ButtonNoBorder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:backgroundTint="@color/white"
+            android:drawableLeft="@drawable/home_black" />
+
+        <TextView
+            android:id="@+id/txtPrivacyLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="6"
+            android:text="Hướng dẫn sử dụng"
+            android:textAlignment="center"
+            android:textSize="25dp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="10dp"
+        android:textStyle="bold"
+        android:layout_marginLeft="15dp"
+        android:textSize="18dp"
+        android:text="Báo cáo Môn Phát triển ứng dụng di động" />
+
+    <TextView
+        android:layout_marginLeft="20dp"
+        android:id="@+id/textView39"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Xây dựng một úng dụng đạt vé xem phim với các tính năng
+cơ bản như xem thông tin vé, đặt vé, xem danh sách vé đã đặt, xem danh sách phim đã xem" />
+
+    <TextView
+        android:layout_marginLeft="15dp"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:layout_marginVertical="15dp"
+        android:id="@+id/textView40"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Hướng dẫn sử dụng hệ thống" />
+
+    <TextView
+        android:layout_marginLeft="20dp"
+        android:id="@+id/textView41"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="* Đăng ký:\n+ Để đăng ký, người dùng phải đảm bảo các yêu
+cầu như số điện thoại, email phải là các số điện thoại và địa chỉ email được xác thực, số điện thoại không được đăng ký trước đó\n
++ Mật khẩu của tài khoản phải có từ 8 ký tự trở lên và có 1 ký tự in hoa, không được phép chứa ký tự đặt biệt\n
+* Mua vé:\n+ Để mua vé người dùng phải chọn đầy đủ thông tin của vé, phải đăng nhập vào trong hệ thống thì mới tiến hành đặt vé được.\n
++ Hủy vé: \n+ Để hủy vé thì người dùng phải đăng nhập vào trong hệ thống, vé muốn hủy phải có ngày xem là từ ngày mai (không thể hủy vé có ngày xem trong hôm nay hoặc quá khứ).
+" />
+
+</LinearLayout>
