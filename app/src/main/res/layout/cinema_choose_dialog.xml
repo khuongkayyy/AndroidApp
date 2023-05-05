@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="25dp"
+    android:background="@drawable/logout_custom"
+    android:layout_gravity="center"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/textView38"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/logout_custom_top_left_right"
+        android:text="Chọn rạp chiếu"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="25dp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/btnDialogCine1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="40dp"
+        android:layout_marginVertical="5dp"
+        android:backgroundTint="@color/white"
+        android:text="Nam Sài Gòn"
+        android:textAlignment="center"
+        android:textColor="#00dd00" />
+
+    <Button
+        android:id="@+id/btnDialogCine2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="40dp"
+        android:layout_marginVertical="5dp"
+        android:backgroundTint="@color/white"
+        android:text="Gò Vấp"
+        android:textAlignment="center"
+        android:textColor="#00dd00" />
+
+    <Button
+        android:id="@+id/btnDialogCine3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="40dp"
+        android:layout_marginVertical="5dp"
+        android:backgroundTint="@color/white"
+        android:text="Cộng Hòa"
+        android:textAlignment="center"
+        android:textColor="#00dd00" />
+
+    <Button
+        android:id="@+id/btnDialogCine4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="40dp"
+        android:layout_marginVertical="5dp"
+        android:backgroundTint="@color/white"
+        android:text="GoldView"
+        android:textAlignment="center"
+        android:textColor="#00dd00" />
+
+    <Button
+        android:id="@+id/btnDialogCine5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="40dp"
+        android:layout_marginVertical="5dp"
+        android:backgroundTint="@color/white"
+        android:text="Cantavil"
+        android:textAlignment="center"
+        android:textColor="#00dd00" />
+
+    <Button
+        android:id="@+id/btnDialogCine6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="40dp"
+        android:layout_marginVertical="5dp"
+        android:backgroundTint="@color/white"
+        android:text="Thủ Đức"
+        android:textAlignment="center"
+        android:textColor="#00dd00" />
+
+    <Button
+        android:id="@+id/btnDialogCine7"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="40dp"
+        android:layout_marginVertical="5dp"
+        android:backgroundTint="@color/white"
+        android:text="Moonlight"
+        android:textAlignment="center"
+        android:textColor="#00dd00" />
+
+    <Button
+        android:id="@+id/btnDialogCine8"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="40dp"
+        android:layout_marginVertical="5dp"
+        android:backgroundTint="@color/white"
+        android:text="NowZone"
+        android:textAlignment="center"
+        android:textColor="#00dd00" />
+
+    <Button
+        android:id="@+id/btnDialogCine9"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="40dp"
+        android:layout_marginVertical="5dp"
+        android:backgroundTint="@color/white"
+        android:text="Phú Thọ"
+        android:textAlignment="center"
+        android:textColor="#00dd00" />
+</LinearLayout>

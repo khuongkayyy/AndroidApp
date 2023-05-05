@@ -42,6 +42,8 @@ public class WatchedMovieList extends AppCompatActivity {
         homeRedirect();
         watchedMovie();
         movieListRedirect();
+        ticketArrayList.clear();
+        uniqueTickets.clear();
     }
 
     private void movieListRedirect() {
@@ -55,6 +57,8 @@ public class WatchedMovieList extends AppCompatActivity {
     }
 
     private void watchedMovie() {
+        ticketArrayList.clear();
+        uniqueTickets.clear();
         String userID = sharedPreferences.getString(KEY_ID,null);
         String userName = sharedPreferences.getString(KEY_NAME,null);
         HashSet<String> uniqueFilms = new HashSet<>();

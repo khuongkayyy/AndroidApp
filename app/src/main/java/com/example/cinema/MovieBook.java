@@ -383,35 +383,57 @@ public class MovieBook extends AppCompatActivity {
         cinemaChoice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showCinemaList(cinemaChoice);
+                showCinemaList(cinemaChoice,Gravity.CENTER);
             }
         });
     }
-    private void showCinemaList(Button button) {
-        final  String[] cinemaList = {"Nam Sài Gòn","Gò Vấp","Cộng Hòa","GoldView","Cantavil","Thủ Đức","Moonlight","NowZone","Phú Thọ"};
-        final int[] selectedItem = {0};
+    private void showCinemaList(Button button,int gravity) {
+        final Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.cinema_choose_dialog);
+        dialog.setCancelable(true);
+        Window window = dialog.getWindow();
+        if (window == null){
+            return;
+        }
+        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT,WindowManager.LayoutParams.WRAP_CONTENT);
+        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        WindowManager.LayoutParams windowAttribute = window.getAttributes();
+        windowAttribute.gravity = gravity;
+        window.setAttributes(windowAttribute);
+        //declare variable:
+        Button cinema1 = dialog.findViewById(R.id.btnDialogCine1);
+        Button cinema2 = dialog.findViewById(R.id.btnDialogCine2);
+        Button cinema3 = dialog.findViewById(R.id.btnDialogCine3);
+        Button cinema4 = dialog.findViewById(R.id.btnDialogCine4);
+        Button cinema5 = dialog.findViewById(R.id.btnDialogCine5);
+        Button cinema6 = dialog.findViewById(R.id.btnDialogCine6);
+        Button cinema7 = dialog.findViewById(R.id.btnDialogCine7);
+        Button cinema8 = dialog.findViewById(R.id.btnDialogCine8);
+        Button cinema9 = dialog.findViewById(R.id.btnDialogCine9);
+
+        setCinemaName(dialog,cinema1);
+        setCinemaName(dialog,cinema2);
+        setCinemaName(dialog,cinema3);
+        setCinemaName(dialog,cinema4);
+        setCinemaName(dialog,cinema5);
+        setCinemaName(dialog,cinema6);
+        setCinemaName(dialog,cinema7);
+        setCinemaName(dialog,cinema8);
+        setCinemaName(dialog,cinema9);
+
+        dialog.show();
+    }
+
+    private void setCinemaName(Dialog dialog,Button button) {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(MovieBook.this);
-                builder.setTitle("Hãy chọn một rạp phim: ");
-                builder.setSingleChoiceItems(cinemaList, selectedItem[0], new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        selectedItem[0] = which;
-                    }
-                });
-                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Button button = findViewById(R.id.btnCinemaChoice);
-                        button.setText(cinemaList[selectedItem[0]]);
-                        cinemaName.setText(button.getText().toString());
-                    }
-                });
-                builder.setNegativeButton("Cancel", null);
-                AlertDialog dialog = builder.create();
-                dialog.show();
+            public void onClick(View view) {
+                Button button1 = findViewById(R.id.btnCinemaChoice);
+                button1.setText(button.getText().toString());
+                cinemaName.setText(button.getText().toString());
+                dialog.dismiss();
             }
         });
     }
