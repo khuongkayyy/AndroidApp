@@ -211,6 +211,7 @@ public class MovieBook extends AppCompatActivity {
                                     databaseReference.child(ticketID).child("time").setValue(finalShowTime);
                                     databaseReference.child(ticketID).child("user").setValue(userID);
                                     databaseReference.child(ticketID).child("id").setValue(ticketID);
+                                    dialog.dismiss();
                                     bookSuccessfully(Gravity.CENTER);
                                 }
                                 @Override
