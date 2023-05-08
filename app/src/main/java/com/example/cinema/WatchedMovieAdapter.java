@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -178,6 +179,7 @@ public class WatchedMovieAdapter extends RecyclerView.Adapter<WatchedMovieAdapte
                 databaseReference.child(commentID).child("userID").setValue(userID);
                 databaseReference.child(commentID).child("userName").setValue(userName);
                 databaseReference.child(commentID).child("id").setValue(commentID);
+                Toast.makeText(context, "Cám ơn bạn đã bình luận!", Toast.LENGTH_SHORT).show();
             }
 
             @Override

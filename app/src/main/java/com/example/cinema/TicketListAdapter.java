@@ -1,5 +1,6 @@
 package com.example.cinema;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
@@ -55,7 +56,7 @@ public class TicketListAdapter extends RecyclerView.Adapter<TicketListAdapter.Ti
     }
 
     @Override
-    public void onBindViewHolder(@NonNull TicketListAdapter.TicketListHolder holder, int position) {
+    public void onBindViewHolder(@NonNull TicketListAdapter.TicketListHolder holder, @SuppressLint("RecyclerView") int position) {
         Ticket ticket = ticketArrayList.get(position);
         //set ticket information:
         holder.ticketName.setText(ticket.getFilm());

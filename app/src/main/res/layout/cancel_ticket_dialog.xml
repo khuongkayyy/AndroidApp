@@ -9,7 +9,7 @@
 
     <TextView
         android:background="@drawable/logout_custom_top_left_right"
-        android:id="@+id/textView36"
+        android:id="@+id/txtCancelLabel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="25dp"
@@ -19,7 +19,7 @@
         android:text="Bạn muốn hủy vé ? " />
 
     <TextView
-        android:id="@+id/textView37"
+        android:id="@+id/txtCancelMessage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="16dp"

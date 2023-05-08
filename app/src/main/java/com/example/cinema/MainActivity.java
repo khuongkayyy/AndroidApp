@@ -197,7 +197,6 @@ public class MainActivity extends AppCompatActivity {
         film4 = findViewById(R.id.btnBookFilm4);
         film5 = findViewById(R.id.btnBookFilm5);
         film6 = findViewById(R.id.btnBookFilm6);
-        film6 = findViewById(R.id.btnBookFilm7);
         film7 = findViewById(R.id.btnBookFilm7);
         //movie image
         movieImage1 = findViewById(R.id.movie1Img);
