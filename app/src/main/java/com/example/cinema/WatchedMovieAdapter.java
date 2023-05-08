@@ -177,6 +177,7 @@ public class WatchedMovieAdapter extends RecyclerView.Adapter<WatchedMovieAdapte
                 databaseReference.child(commentID).child("message").setValue(message);
                 databaseReference.child(commentID).child("userID").setValue(userID);
                 databaseReference.child(commentID).child("userName").setValue(userName);
+                databaseReference.child(commentID).child("id").setValue(commentID);
             }
 
             @Override
@@ -205,7 +206,8 @@ public class WatchedMovieAdapter extends RecyclerView.Adapter<WatchedMovieAdapte
                     Comment comment = dataSnapshot.getValue(Comment.class);
                     commentArrayList.add(comment);
                 }
-                listener.onCommentIDFetched(String.valueOf(commentArrayList.size()));
+                int lastCommentId = commentArrayList.size() > 0 ? Integer.parseInt(commentArrayList.get(commentArrayList.size()-1).getId()) : 0;
+                listener.onCommentIDFetched(String.valueOf(lastCommentId + 1));
             }
 
             @Override
@@ -213,7 +215,7 @@ public class WatchedMovieAdapter extends RecyclerView.Adapter<WatchedMovieAdapte
 
             }
         });
-        return String.valueOf(commentArrayList.size());
+        return  "";
     }
 
     @Override

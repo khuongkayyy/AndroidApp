@@ -6,6 +6,11 @@ public class Comment {
     private String userName;
     private String date;
     private String message;
+    private String id;
+
+    public String getId() {
+        return id;
+    }
 
     public String getMessage() {
         return message;

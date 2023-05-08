@@ -41,6 +41,7 @@ public class MovieDetail extends AppCompatActivity {
         homeRedirect();
         bookTicket();
         showCommentList();
+        commentListAdapter.notifyDataSetChanged();
     }
 
     private void showCommentList() {
@@ -50,8 +51,12 @@ public class MovieDetail extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot: snapshot.getChildren()){
                     Comment comment = dataSnapshot.getValue(Comment.class);
-                    if (comment.getFilm().equals(filmName.getText())){
-                        commentArrayList.add(comment);
+                    if (comment.getFilm() != null && comment.getFilm().equals(filmName.getText())) {
+                        if (!commentArrayList.contains(comment)) {
+                            commentArrayList.add(comment);
+                        }
+                    } else {
+                        commentArrayList.remove(comment);
                     }
                 }
                 commentListAdapter.notifyDataSetChanged();
