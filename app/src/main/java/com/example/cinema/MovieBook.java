@@ -195,7 +195,8 @@ public class MovieBook extends AppCompatActivity {
                             databaseReference.child("tickets").addValueEventListener(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                    String ticketID = String.valueOf(ticketArrayList.size());
+//                                    String ticketID = String.valueOf(ticketArrayList.size());
+                                    String ticketID = String.valueOf(Integer.parseInt(ticketArrayList.get(ticketArrayList.size()-1).getId())+1);
                                     databaseReference.child(ticketID).child("bookdate").setValue(filmDate.getText().toString());
                                     databaseReference.child(ticketID).child("cinema").setValue(cinemaName.getText().toString());
                                     databaseReference.child(ticketID).child("film").setValue(filmName.getText().toString());
