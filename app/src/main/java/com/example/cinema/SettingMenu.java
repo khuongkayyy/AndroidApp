@@ -37,7 +37,7 @@ public class SettingMenu extends AppCompatActivity {
         ticketHistory();
         accountSetting();
     }
-
+    //redirection to account setting activity
     private void accountSetting() {
         accountSetting.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,7 +47,7 @@ public class SettingMenu extends AppCompatActivity {
             }
         });
     }
-
+    //redirection to transaction history
     private void ticketHistory() {
         ticketHistory.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,7 +57,7 @@ public class SettingMenu extends AppCompatActivity {
             }
         });
     }
-
+    //handle sign out request
     private void signOut() {
         signOut.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,7 +105,7 @@ public class SettingMenu extends AppCompatActivity {
         });
         dialog.show();
     }
-
+    //auto update data when open activity
     private void autoUpdate() {
         String userID = sharedPreferences.getString(KEY_ID,null);
         String userName = sharedPreferences.getString(KEY_NAME,null);
@@ -122,7 +122,7 @@ public class SettingMenu extends AppCompatActivity {
             accountSetting.setVisibility(View.GONE);
         }
     }
-
+    //redirection to other activity
     private void homeRedirect() {
         home.setOnClickListener(new View.OnClickListener() {
             @Override

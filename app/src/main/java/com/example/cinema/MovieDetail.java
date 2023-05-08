@@ -106,7 +106,7 @@ public class MovieDetail extends AppCompatActivity {
         });
         setMovieImage(filmName.getText().toString());
     }
-
+    //update movie image
     private void setMovieImage(String filmName) {
         switch (filmName){
             case "Lật Mặt 6":

@@ -29,18 +29,7 @@ public class MovieList extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.all_movie_show);
-        recyclerView = findViewById(R.id.movieList);
-        databaseReference = FirebaseDatabase.getInstance().getReference("film");
-        currentMovie = findViewById(R.id.btnCurrentMovie);
-        newMovie = findViewById(R.id.btnNewMovie);
-        filmArrayList = new ArrayList<>();
-
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        filmArrayList.clear();
-        movieListAdapter = new MovieListAdapter(this,filmArrayList);
-        recyclerView.setAdapter(movieListAdapter);
+        initVariable();
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -72,6 +61,21 @@ public class MovieList extends AppCompatActivity {
                 showNewMovie();
             }
         });
+    }
+
+    private void initVariable() {
+        recyclerView = findViewById(R.id.movieList);
+        databaseReference = FirebaseDatabase.getInstance().getReference("film");
+        currentMovie = findViewById(R.id.btnCurrentMovie);
+        newMovie = findViewById(R.id.btnNewMovie);
+        filmArrayList = new ArrayList<>();
+
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        filmArrayList.clear();
+        movieListAdapter = new MovieListAdapter(this,filmArrayList);
+        recyclerView.setAdapter(movieListAdapter);
     }
 
     private void showNewMovie() {

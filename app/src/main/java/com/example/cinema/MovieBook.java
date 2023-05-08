@@ -57,7 +57,7 @@ public class MovieBook extends AppCompatActivity {
         dateChoice();
         showChoice();
     }
-
+    //format movie show time
     private String showTimeFormat(String time, String duration) {
         String timeString = time +" "+" "+duration;
         int durationNum = Integer.parseInt(duration.substring(0, duration.indexOf(" ")));
@@ -70,7 +70,7 @@ public class MovieBook extends AppCompatActivity {
         String formattedTime = String.format("%02dh%02d", newHours, newMinutes);
         return time+" ~ "+ formattedTime;
     }
-
+    //handle show time choose event
     private void showChoice() {
         singleShowChoice(show1,1,Gravity.CENTER);
         singleShowChoice(show2,2,Gravity.CENTER);
@@ -86,6 +86,7 @@ public class MovieBook extends AppCompatActivity {
         String showTime = null;
         String ticketType = null;
         String ticketPrice = null;
+        //find which show time to get time, type and price of ticket
         switch (showID){
             case 1:
                 showTime = show1.getText().toString();
@@ -155,6 +156,7 @@ public class MovieBook extends AppCompatActivity {
                 } else if (userID == null) {
                     requestToLogin(Gravity.CENTER);
                 } else {
+                    //show up dialog
                     final Dialog dialog = new Dialog(MovieBook.this);
                     dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                     dialog.setContentView(R.layout.ticket_dialog);
@@ -175,7 +177,7 @@ public class MovieBook extends AppCompatActivity {
                     TextView dialogUser = dialog.findViewById(R.id.txtDialogUser);
                     Button no = dialog.findViewById(R.id.btnTicketDialogNo);
                     Button yes = dialog.findViewById(R.id.btnTicketDialogYes);
-
+                    //update dialog information
                     dialogCinema.setText("Rạp chiếu: "+ cinemaName.getText().toString());
                     dialogDate.setText("Ngày xem: "+filmDate.getText().toString());
                     dialogTime.setText("Suất chiếu: "+showTimeFormat(finalShowTime,filmTime));
@@ -189,6 +191,7 @@ public class MovieBook extends AppCompatActivity {
                     yes.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
+                            //process to book movie ticket
                             databaseReference.child("tickets").addValueEventListener(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -217,6 +220,7 @@ public class MovieBook extends AppCompatActivity {
             }
         });
     }
+    //request to log in before booking ticket
     private void requestToLogin(int gravity) {
         final Dialog dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -238,7 +242,7 @@ public class MovieBook extends AppCompatActivity {
         TextView dialogMessage = dialog.findViewById(R.id.txtDialogMessage);
         Button no = dialog.findViewById(R.id.btnRequestNo);
         Button yes = dialog.findViewById(R.id.btnRequestYes);
-        //uopdate data:
+        //update data:
         dialogTittle.setText("Không thể thực hiện");
         dialogMessage.setText("Bạn phải tiến hành đăng nhập để mua vé\n Đăng nhập ngay ?");
         no.setOnClickListener(new View.OnClickListener() {
@@ -256,7 +260,7 @@ public class MovieBook extends AppCompatActivity {
         });
         dialog.show();
     }
-
+    //show up booking ticket result successfully
     private void bookSuccessfully(int gravity){
         final Dialog dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -278,7 +282,7 @@ public class MovieBook extends AppCompatActivity {
         TextView dialogMessage = dialog.findViewById(R.id.txtDialogMessage);
         Button no = dialog.findViewById(R.id.btnRequestNo);
         Button yes = dialog.findViewById(R.id.btnRequestYes);
-        //uopdate data:
+        //update data:
         dialogTittle.setText("Đã đặt vé thành công");
         dialogMessage.setText("Bạn có muốn xem danh sách vé đã đặt!");
         no.setOnClickListener(new View.OnClickListener() {
@@ -296,7 +300,7 @@ public class MovieBook extends AppCompatActivity {
         });
         dialog.show();
     }
-
+    //update data when change book date
     private void dateChoice() {
         dateChoice.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -316,7 +320,7 @@ public class MovieBook extends AppCompatActivity {
             }
         });
     }
-
+    //update data when change film
     private void filmChoice() {
         filmChoice.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -326,7 +330,7 @@ public class MovieBook extends AppCompatActivity {
             }
         });
     }
-
+    //update data when change cinema
     private void cinemaChoice() {
         cinemaChoice.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -373,7 +377,7 @@ public class MovieBook extends AppCompatActivity {
 
         dialog.show();
     }
-
+    //update data when change cinema
     private void setCinemaName(Dialog dialog,Button button) {
         button.setOnClickListener(new View.OnClickListener() {
             @Override

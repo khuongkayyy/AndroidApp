@@ -43,12 +43,15 @@ public class Login extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //get the information inputted
                 final String userMobile = phoneNum.getText().toString();
                 final String userPassword = password.getText().toString();
+                //check the inputted information
                 if (userMobile.isEmpty() || userPassword.isEmpty()) {
                     Toast.makeText(Login.this,"Vui lòng nhập đầy đủ email và mật khẩu",Toast.LENGTH_SHORT).show();
                 }
                 else {
+                    //process the login request
                     databaseReference.child("users").addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -65,9 +68,11 @@ public class Login extends AppCompatActivity {
                                     startActivity(intent);
                                     finish();
                                 }else {
+                                    //password is incorrect
                                     Toast.makeText(Login.this,"Mật khẩu nhập vào không chính xác!",Toast.LENGTH_SHORT).show();
                                 }
                             }else {
+                                //no account linked to phone number
                                 Toast.makeText(Login.this,"Không tìm thấy tài khoản liên kết với số điện thoại trên!",Toast.LENGTH_SHORT).show();
                             }
                         }
@@ -86,14 +91,12 @@ public class Login extends AppCompatActivity {
         registration.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent intent = new Intent(Login.this,Registration.class);
-//                startActivity(intent);
                 Intent intent = new Intent(Login.this,Registration.class);
                 startActivityForResult(intent,REQUEST_CODE);
             }
         });
     }
-
+    //get the user phone and password form registration form
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

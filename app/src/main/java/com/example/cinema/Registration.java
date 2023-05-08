@@ -52,7 +52,7 @@ public class Registration extends AppCompatActivity {
                 final String newUserEmail = email.getText().toString();
                 final String newUserPass = password.getText().toString();
                 final String newUserPassCon = passwordConfirmed.getText().toString();
-
+                //check the information inputted
                 if (newUserMobile.isEmpty() || newUserName.isEmpty() || newUserEmail.isEmpty() || newUserPass.isEmpty() || newUserPassCon.isEmpty()){
                     Toast.makeText(Registration.this,"Vui lòng nhập đầy đủ thông tin!",Toast.LENGTH_SHORT).show();
                 }else if (!isValidPhoneNumber(newUserMobile)){
@@ -65,11 +65,13 @@ public class Registration extends AppCompatActivity {
                     databaseReference.child("users").addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            //check the information inputted
                             if (snapshot.hasChild(newUserMobile)){
                                 Toast.makeText(Registration.this,"Số điện thoại trên đã được đăng ký rồi!",Toast.LENGTH_SHORT).show();
                             } else if (!newUserPass.equals(newUserPassCon)) {
                                 Toast.makeText(Registration.this,"Mật khẩu không trùng lắp",Toast.LENGTH_SHORT).show();
                             }else {
+                                //process to create account
                                 databaseReference.child("users").child(newUserMobile).child("fullname").setValue(newUserName);
                                 databaseReference.child("users").child(newUserMobile).child("email").setValue(newUserEmail);
                                 databaseReference.child("users").child(newUserMobile).child("password").setValue(newUserPass);
@@ -86,6 +88,7 @@ public class Registration extends AppCompatActivity {
             }
         });
     }
+    //inform user that account has been created successfully
     private void registrationSuccessfully(int gravity,String newUserMobile, String newUserPass){
         final Dialog dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -136,7 +139,7 @@ public class Registration extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
     }
-
+    //check the constraint
     public static boolean isValidPhoneNumber(String input) {
         String regexPattern = "^0(91|94|98|97|90|93)\\d{7}$";
         return input.matches(regexPattern);
@@ -152,7 +155,7 @@ public class Registration extends AppCompatActivity {
         Matcher matcher = pattern.matcher(email);
         return matcher.matches();
     }
-
+    //redirection to login activity
     private void loginRedirect() {
         login.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         accountSetting();
         privacy();
     }
-
+    //privacy page redirection
     private void privacy() {
         txtPrivacy.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
+    //account setting redirection
     private void accountSetting() {
         account.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+    //handle book ticket event
     private void movieButtonClick() {
         setMovieButtonClickListener(film1,1);
         setMovieButtonClickListener(film2,2);
@@ -63,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setMovieButtonClickListener(Button button, int movieId) {
+        //check which film to get film name
         TextView tempName = null;
         switch (movieId){
             case 1:
@@ -93,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //redirect to MovieBook Activity
                 String filmName = finalTempName.getText().toString();
                 Intent intent = new Intent(MainActivity.this, MovieBook.class);
                 intent.putExtra("filmName", filmName);
@@ -100,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
+    //handle movie detail event
     private void movieImageClick() {
         setMovieImageClickListener(movieImage1,1);
         setMovieImageClickListener(movieImage2,2);
@@ -112,6 +115,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setMovieImageClickListener(ImageView movieImage, int movieId) {
+        //check which film to get film name
         TextView tempName = null;
         switch (movieId){
             case 1:
@@ -142,6 +146,7 @@ public class MainActivity extends AppCompatActivity {
         movieImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //redirect to MovieDetail Activity
                 String filmName = finalTempName.getText().toString();
                 Intent intent = new Intent(MainActivity.this, MovieDetail.class);
                 intent.putExtra("filmName", filmName);
@@ -149,7 +154,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
+    //handle sidebar button clicked event
     private void sidebarButtonClicked() {
         movieBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -206,7 +211,7 @@ public class MainActivity extends AppCompatActivity {
         //textview
         txtPrivacy = findViewById(R.id.txtPrivacy);
     }
-
+    //activity redirect
     private void openGiftScreen() {
         Intent intent = new Intent(MainActivity.this,GiftActivity.class);
         startActivity(intent);
