@@ -1,23 +1,46 @@
 package com.example.cinema;
 
+import static android.content.Context.MODE_PRIVATE;
+
+import android.app.Dialog;
 import android.content.Context;
-import android.media.Image;
+import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class WatchedMovieAdapter extends RecyclerView.Adapter<WatchedMovieAdapter.WatchedMovieListHolder> {
     Context context;
     ArrayList<Ticket> ticketArrayList;
+    DatabaseReference databaseReference;
+    ArrayList<Comment> commentArrayList;
+    SharedPreferences sharedPreferences;
+    private static final String SHARED_PREF_NAME ="userpref";
+    private static final String KEY_ID = "userID";
+    private static final String KEY_NAME = "userName";
 
     public WatchedMovieAdapter(Context context, ArrayList<Ticket> ticketArrayList) {
         this.context = context;
@@ -75,6 +98,122 @@ public class WatchedMovieAdapter extends RecyclerView.Adapter<WatchedMovieAdapte
             default:
                 return;
         }
+        holder.comment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showCommentDialog(Gravity.CENTER,holder.watchedMovieName.getText().toString());
+            }
+        });
+    }
+
+    private void showCommentDialog(int gravity, String filmName) {
+        final Dialog dialog = new Dialog(context);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.comment_dialog);
+        dialog.setCancelable(false);
+        Window window = dialog.getWindow();
+        if (window == null){
+            return;
+        }
+        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT,WindowManager.LayoutParams.WRAP_CONTENT);
+        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        WindowManager.LayoutParams windowAttribute = window.getAttributes();
+        windowAttribute.gravity = gravity;
+        window.setAttributes(windowAttribute);
+
+        //textview
+        TextView commentFilmName = dialog.findViewById(R.id.txtCommenFilmName);
+        TextView commentLabel = dialog.findViewById(R.id.txtCommentLabel);
+        EditText commentMessage = dialog.findViewById(R.id.edtCommentMessage);
+        Button submitComment = dialog.findViewById(R.id.btnCommentSubmit);
+        Button cancelComment = dialog.findViewById(R.id.btnCancelComment);
+
+        //update dialog data
+        commentLabel.setText("Nhập nhận xét");
+        commentFilmName.setText("Tên tựa phim: "+filmName);
+
+
+        //button click event listener:
+        cancelComment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+        submitComment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String message = commentMessage.getText().toString();
+                getCommentID(new OnCommentIDFetchedListener() {
+                    @Override
+                    public void onCommentIDFetched(String commentID) {
+//                        try{
+//                            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+//                            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+//                            imm.unregisterEditTex(editText);
+//                        }catch (IllegalArgumentException e){
+//
+//                        }
+                        addNewComment(commentID,filmName,message);
+                        dialog.dismiss();
+                    }
+                });
+            }
+        });
+        dialog.show();
+    }
+
+    private void addNewComment(String commentID,String filmName, String message) {
+        sharedPreferences = context.getSharedPreferences(SHARED_PREF_NAME,MODE_PRIVATE);
+        String userID = sharedPreferences.getString(KEY_ID,null);
+        String userName = sharedPreferences.getString(KEY_NAME,null);
+        databaseReference = FirebaseDatabase.getInstance().getReference("comments");
+        databaseReference.child(commentID).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                databaseReference.child(commentID).child("date").setValue(getCommentDate());
+                databaseReference.child(commentID).child("film").setValue(filmName);
+                databaseReference.child(commentID).child("message").setValue(message);
+                databaseReference.child(commentID).child("userID").setValue(userID);
+                databaseReference.child(commentID).child("userName").setValue(userName);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    public String getCommentDate(){
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy"); // format pattern
+        String currentDate = dateFormat.format(calendar.getTime()); // convert to string
+        return  currentDate;
+    }
+    public interface OnCommentIDFetchedListener {
+        void onCommentIDFetched(String commentID);
+    }
+    private String getCommentID(OnCommentIDFetchedListener listener) {
+        commentArrayList = new ArrayList<>();
+        databaseReference = FirebaseDatabase.getInstance().getReference("comments");
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot: snapshot.getChildren()){
+                    Comment comment = dataSnapshot.getValue(Comment.class);
+                    commentArrayList.add(comment);
+                }
+                listener.onCommentIDFetched(String.valueOf(commentArrayList.size()));
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        return String.valueOf(commentArrayList.size());
     }
 
     @Override
@@ -85,6 +224,7 @@ public class WatchedMovieAdapter extends RecyclerView.Adapter<WatchedMovieAdapte
     public class WatchedMovieListHolder extends RecyclerView.ViewHolder {
         public TextView watchedMovieName,watchedMovieDate;
         public ImageView watchedMovieImage;
+        Button comment;
         public WatchedMovieListHolder(@NonNull View watchedMovieView) {
             super(watchedMovieView);
             //textview
@@ -92,6 +232,8 @@ public class WatchedMovieAdapter extends RecyclerView.Adapter<WatchedMovieAdapte
             watchedMovieDate =watchedMovieView.findViewById(R.id.txtWatchedFilmDate);
             //image view
             watchedMovieImage = watchedMovieView.findViewById(R.id.watchedMovieImg);
+            //button
+            comment = watchedMovieView.findViewById(R.id.btnComment);
         }
     }
 }

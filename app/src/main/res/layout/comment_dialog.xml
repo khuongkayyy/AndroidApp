@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/logout_custom"
+    android:layout_marginHorizontal="15dp"
+    android:layout_gravity="center"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/txtCommentLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/logout_custom_top_left_right"
+        android:text="TextView"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="15dp"
+        android:id="@+id/txtCommenFilmName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tên tựa Phim: " />
+
+    <EditText
+        android:id="@+id/edtCommentMessage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginVertical="10dp"
+        android:ems="10"
+        android:hint="Nội dung nhận xét"
+        android:inputType="textPersonName"
+        android:paddingHorizontal="10dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_marginHorizontal="20dp"
+            android:id="@+id/btnCancelComment"
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginBottom="10dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:backgroundTint="@color/white"
+            android:text="Hủy"
+            android:textColor="#00dd00" />
+
+        <Button
+            android:layout_marginHorizontal="20dp"
+            android:id="@+id/btnCommentSubmit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="5"
+            android:backgroundTint="#00dd00"
+            android:text="Nhận xét" />
+    </LinearLayout>
+
+</LinearLayout>

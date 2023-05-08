@@ -37,4 +37,13 @@
         android:layout_marginBottom="10dp"
         android:textColor="@color/white"
         android:textSize="20dp" />
+
+    <Button
+        android:layout_marginBottom="10dp"
+        android:layout_marginHorizontal="30dp"
+        android:backgroundTint="#00dd00"
+        android:id="@+id/btnComment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nhận xét" />
 </LinearLayout>

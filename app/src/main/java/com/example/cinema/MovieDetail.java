@@ -44,7 +44,7 @@ public class MovieDetail extends AppCompatActivity {
     }
 
     private void showCommentList() {
-        databaseReference = FirebaseDatabase.getInstance().getReference("comment");
+        databaseReference = FirebaseDatabase.getInstance().getReference("comments");
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
