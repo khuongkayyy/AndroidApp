@@ -246,28 +246,49 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginVertical="10dp"
+                android:layout_height="wrap_content"
                 android:layout_marginHorizontal="5dp"
+                android:layout_marginVertical="10dp"
                 android:background="@drawable/round_corner_layout"
                 android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/textView16"
-                    android:layout_marginVertical="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginVertical="10dp"
+                    android:text="Đánh giá của chuyên gia"
                     android:textAlignment="center"
-                    android:textStyle="bold"
-                    android:text="Đánh giá của chuyên gia" />
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/txtReview"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="15dp"
+                    android:text="Phần đánh giá của chuyên gia sẽ được in ở đây"
+                    android:textAlignment="center" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/round_corner_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
                     android:textAlignment="center"
-                    android:text="Phần đánh giá của chuyên gia sẽ được in ở đây" />
+                    android:textStyle="bold"
+                    android:id="@+id/textView32"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Nhận xét của người xem" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/commentList"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

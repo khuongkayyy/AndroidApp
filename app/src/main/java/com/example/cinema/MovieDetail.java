@@ -2,6 +2,8 @@ package com.example.cinema;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,6 +18,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class MovieDetail extends AppCompatActivity {
     private Button home;
     private Button bookTicket;
@@ -23,6 +28,10 @@ public class MovieDetail extends AppCompatActivity {
     private ImageView movieImage;
     private ImageView moviePic1,moviePic2,moviePic3,moviePic4,moviePic5;
     private DatabaseReference databaseReference;
+    RecyclerView recyclerView;
+    ArrayList<Comment> commentArrayList;
+    CommentListAdapter commentListAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +40,27 @@ public class MovieDetail extends AppCompatActivity {
         updateData();
         homeRedirect();
         bookTicket();
+        showCommentList();
+    }
+
+    private void showCommentList() {
+        databaseReference = FirebaseDatabase.getInstance().getReference("comment");
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot: snapshot.getChildren()){
+                    Comment comment = dataSnapshot.getValue(Comment.class);
+                    if (comment.getFilm().equals(filmName.getText())){
+                        commentArrayList.add(comment);
+                    }
+                }
+                commentListAdapter.notifyDataSetChanged();
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     private void bookTicket() {
@@ -75,6 +105,16 @@ public class MovieDetail extends AppCompatActivity {
         moviePic3 = findViewById(R.id.picNum3);
         moviePic4 = findViewById(R.id.picNum4);
         moviePic5 = findViewById(R.id.picNum5);
+
+        //recycler view
+        recyclerView = findViewById(R.id.commentList);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        //arraylist
+        commentArrayList = new ArrayList<>();
+        //adapter
+        commentListAdapter = new CommentListAdapter(this,commentArrayList);
+        recyclerView.setAdapter(commentListAdapter);
     }
     private void updateData() {
         Intent intent = getIntent();
