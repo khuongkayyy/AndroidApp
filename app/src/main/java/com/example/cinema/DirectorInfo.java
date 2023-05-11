@@ -82,7 +82,7 @@ public class DirectorInfo extends AppCompatActivity {
                             imageResourceId = getResources().getIdentifier("unknown", "drawable", getPackageName());
                         }
                         directorImg.setImageResource(imageResourceId);
-
+                        break;
                     }
                 }
             }
