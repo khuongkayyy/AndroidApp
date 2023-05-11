@@ -7,7 +7,8 @@
     android:layout_height="match_parent"
     android:background="@drawable/account_background"
     android:orientation="vertical"
-    tools:context=".AccountSetting">
+    tools:context=".AccountSetting"
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -41,7 +42,8 @@
         android:textAlignment="center"
         android:textColor="#07292F"
         android:textSize="25dp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:layout_marginHorizontal="10dp"/>
 
     <TextView
         android:id="@+id/textView20"
@@ -50,7 +52,8 @@
         android:layout_marginTop="25dp"
         android:text="Tên Tài Khoản"
         android:textColor="#07292F"
-        android:textSize="20dp" />
+        android:textSize="20dp"
+        android:layout_marginHorizontal="10dp"/>
 
     <EditText
         android:id="@+id/accountNameEdt"
@@ -59,7 +62,8 @@
         android:layout_marginTop="15dp"
         android:ems="10"
         android:hint="Tên tài khoản"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName"
+        android:layout_marginHorizontal="10dp"/>
 
     <TextView
         android:id="@+id/textView33"
@@ -68,7 +72,8 @@
         android:layout_marginTop="15dp"
         android:text="Mật Khẩu"
         android:textColor="#C9E990"
-        android:textSize="20dp" />
+        android:textSize="20dp"
+        android:layout_marginHorizontal="10dp"/>
 
     <EditText
         android:id="@+id/accountPasswordEdt"
@@ -79,7 +84,8 @@
         android:hint="Mật khẩu"
         android:inputType="textPassword"
         android:textColor="#C9E990"
-        android:textColorHint="#C9E990" />
+        android:textColorHint="#C9E990"
+        android:layout_marginHorizontal="10dp"/>
 
     <TextView
         android:id="@+id/textView34"
@@ -87,7 +93,8 @@
         android:layout_height="wrap_content"
         android:text="Xác Nhận Mật Khẩu"
         android:textColor="#C9E990"
-        android:textSize="20dp" />
+        android:textSize="20dp"
+        android:layout_marginHorizontal="10dp"/>
 
     <EditText
         android:password="true"
@@ -99,7 +106,8 @@
         android:hint="Xác nhận mật khẩu"
         android:inputType="textPersonName"
         android:textColor="#C9E990"
-        android:textColorHint="#C9E990" />
+        android:textColorHint="#C9E990"
+        android:layout_marginHorizontal="10dp"/>
 
     <Button
         android:height="60dp"

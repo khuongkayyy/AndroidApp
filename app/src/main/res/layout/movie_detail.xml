@@ -123,6 +123,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginVertical="10dp"
                 android:layout_marginHorizontal="5dp"
+                android:padding="10dp"
                 android:background="@drawable/round_corner_layout"
                 android:orientation="vertical">
 
@@ -159,16 +160,27 @@
                     android:layout_height="wrap_content"
                     android:text="Đạo diễn"
                     android:textAlignment="center"
-                    android:textStyle="bold
-" />
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/txtDirector"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="15dp"
+                    android:layout_marginBottom="10dp"
                     android:textAlignment="center"
                     android:text="Dạo diễn và diễn viên sẽ được thể hiện ở đây" />
+
+                <TextView
+                    android:id="@+id/showDirector"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:text="Xem thông tin chi tiết"
+                    android:layout_marginBottom="10dp"
+                    android:clickable="true"
+                    android:textStyle="bold"
+                    android:textColor="#009C00"
+                    />
             </LinearLayout>
 
             <LinearLayout

@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -24,7 +25,7 @@ import java.util.Arrays;
 public class MovieDetail extends AppCompatActivity {
     private Button home;
     private Button bookTicket;
-    private TextView filmName,filmDate,filmType,filmTime,filmDirector,filmComment,filmBrief;
+    private TextView filmName,filmDate,filmType,filmTime,filmDirector,filmComment,filmBrief, showDirector;
     private ImageView movieImage;
     private ImageView moviePic1,moviePic2,moviePic3,moviePic4,moviePic5;
     private DatabaseReference databaseReference;
@@ -42,6 +43,7 @@ public class MovieDetail extends AppCompatActivity {
         bookTicket();
         showCommentList();
         commentListAdapter.notifyDataSetChanged();
+
     }
 
     private void showCommentList() {
@@ -98,7 +100,7 @@ public class MovieDetail extends AppCompatActivity {
         filmDirector = findViewById(R.id.txtDirector);
         filmComment = findViewById(R.id.txtReview);
         filmBrief = findViewById(R.id.txtFilmBrief);
-
+        showDirector = findViewById(R.id.showDirector);
         //button
         home = findViewById(R.id.btnDetail_Home);
         bookTicket = findViewById(R.id.btnBook);
@@ -131,17 +133,28 @@ public class MovieDetail extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot: snapshot.getChildren()){
                     Film film = dataSnapshot.getValue(Film.class);
-                    if (film.getName().equals(filmName.getText().toString())){
-                        if (film.getStatus().equalsIgnoreCase("new")){
+                    if (film.getName().equals(filmName.getText().toString())) {
+                        if (film.getStatus().equalsIgnoreCase("new")) {
                             bookTicket.setEnabled(false);
                             bookTicket.setText("Phim sắp lên lịch");
                         }
-                        filmDate.setText("Ngày khởi chiếu: "+film.getDate());
-                        filmTime.setText("Thời lượng: "+film.getTime());
-                        filmType.setText("Thể loại: "+film.getType());
+                        filmDate.setText("Ngày khởi chiếu: " + film.getDate());
+                        filmTime.setText("Thời lượng: " + film.getTime());
+                        filmType.setText("Thể loại: " + film.getType());
                         filmDirector.setText(film.getDirector());
                         filmComment.setText(film.getComment());
                         filmBrief.setText(film.getDescription());
+                        if (showDirector != null) {
+                            showDirector.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    Intent intent = new Intent(MovieDetail.this, DirectorInfo.class);
+                                    intent.putExtra("name", film.getDirector());
+                                    startActivity(intent);
+                                }
+                            });
+                        }
+                        break;
                     }
                 }
             }

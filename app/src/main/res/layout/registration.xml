@@ -32,6 +32,7 @@
 
     <EditText
         android:layout_marginTop="5dp"
+        android:paddingHorizontal="10dp"
         android:drawableLeft="@drawable/regis_phone"
         android:background="@drawable/regis_edt"
         android:id="@+id/edtNewUserMobile"
@@ -47,6 +48,7 @@
     <EditText
         android:drawableLeft="@drawable/regis_peson"
         android:layout_marginHorizontal="30dp"
+        android:paddingHorizontal="10dp"
         android:id="@+id/edtNewUserName"
         android:layout_width="match_parent"
         android:layout_height="40dp"
@@ -62,6 +64,7 @@
         android:drawableLeft="@drawable/regis_email"
         android:background="@drawable/regis_edt"
         android:layout_marginHorizontal="30dp"
+        android:paddingHorizontal="10dp"
         android:layout_marginTop="10dp"
         android:id="@+id/edtNewUserEmail"
         android:layout_width="match_parent"
@@ -76,6 +79,8 @@
         android:drawableLeft="@drawable/regis_pass"
         android:background="@drawable/regis_edt"
         android:layout_marginHorizontal="30dp"
+        android:paddingHorizontal="10dp"
+
         android:layout_marginTop="10dp"
         android:id="@+id/edtNewUserPassword"
         android:layout_width="match_parent"
@@ -92,6 +97,8 @@
         android:drawableLeft="@drawable/regis_pass"
         android:background="@drawable/regis_edt"
         android:layout_marginHorizontal="30dp"
+        android:paddingHorizontal="10dp"
+
         android:layout_marginTop="10dp"
         android:id="@+id/edtNewUserPassCon"
         android:layout_width="match_parent"
@@ -118,7 +125,7 @@
         android:textColor="#FFFFFF" />
 
     <Button
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:id="@+id/btnLoginDirect"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
