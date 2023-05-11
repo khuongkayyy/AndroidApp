@@ -124,6 +124,7 @@ public class CommentListAdapter  extends RecyclerView.Adapter<CommentListAdapter
                         databaseReference.child(commentID).child("date").setValue(getCommentDate());
                         Toast.makeText(context, "Đã cập nhật bình luận thành công!", Toast.LENGTH_SHORT).show();
                         commentArrayList.clear();
+                        notifyDataSetChanged();
                     }
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
