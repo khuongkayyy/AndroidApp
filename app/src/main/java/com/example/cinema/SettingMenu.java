@@ -110,9 +110,9 @@ public class SettingMenu extends AppCompatActivity {
         String userID = sharedPreferences.getString(KEY_ID,null);
         String userName = sharedPreferences.getString(KEY_NAME,null);
         if (userName != null){
-            signIn.setText("Xin chào: "+userName);
+            signIn.setText("Xin chào:\n"+userName);
         }else {
-            signIn.setText("Xin chào, nhấn vào đây để đăng nhập!");
+            signIn.setText("Xin chào,\nnhấn vào đây để đăng nhập!");
         }
         if (userID != null){
             signIn.setEnabled(false);

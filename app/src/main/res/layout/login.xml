@@ -39,11 +39,13 @@
         android:background="@drawable/login_edt"
         android:drawableLeft="@drawable/baseline_phone_24"
         android:ems="10"
+        android:paddingHorizontal="10dp"
         android:hint=" Số điện thoại"
         android:inputType="textPersonName"
         android:textColor="@color/white" />
 
     <EditText
+        android:paddingHorizontal="10dp"
         android:id="@+id/edtPassword"
         android:layout_width="match_parent"
         android:layout_height="50dp"
